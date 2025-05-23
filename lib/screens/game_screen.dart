@@ -115,50 +115,6 @@ class GameScreen extends ConsumerWidget {
                       child: CircularProgressIndicator(),
                     ),
             ),
-
-            // Kaydırma talimatları
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      const Icon(Icons.arrow_back, color: Colors.red),
-                      Text(
-                        'HAYIR',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      if (currentEvent != null)
-                        Text(
-                          currentEvent.noImpact.optionText,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      const Icon(Icons.arrow_forward, color: Colors.green),
-                      Text(
-                        'EVET',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      if (currentEvent != null)
-                        Text(
-                          currentEvent.yesImpact.optionText,
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),

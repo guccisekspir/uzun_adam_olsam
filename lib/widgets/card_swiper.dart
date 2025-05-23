@@ -134,8 +134,8 @@ class _CardSwiperState extends State<CardSwiper>
           child: Transform.rotate(
             angle: angle,
             child: Container(
-              width: screenWidth * 0.85,
-              height: screenHeight * 0.6,
+              width: screenWidth * 0.50,
+              height: screenHeight * 0.4,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -191,6 +191,53 @@ class _CardSwiperState extends State<CardSwiper>
                               widget.event.description,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
+                          ),
+                        ),
+                        // Kaydırma talimatları
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  const Icon(Icons.arrow_back,
+                                      color: Colors.red),
+                                  Text(
+                                    'HAYIR',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  if (widget.event != null)
+                                    Text(
+                                      widget.event.noImpact.optionText,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  const Icon(Icons.arrow_forward,
+                                      color: Colors.green),
+                                  Text(
+                                    'EVET',
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  if (widget.event != null)
+                                    Text(
+                                      widget.event.yesImpact.optionText,
+                                      style:
+                                          Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],
