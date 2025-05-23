@@ -1,0 +1,1062 @@
+{
+  "events": [
+    {
+      "id": "parti_liderligi",
+      "title": "Parti Liderliği",
+      "description": "Adalet ve Kalkınma Partisi (AKP) yaklaşan seçimlere katılmak için güçlü bir lidere ihtiyaç duyuyor. Partiyi yönetmek için öne çıkacak mısınız?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": 15,
+        "communal": 10,
+        "optionText": "AKP'yi zafere taşıyacağım"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Perde arkasından destek vereceğim"
+      },
+      "yesChainEventId": "secim_zaferi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "secim_zaferi",
+      "title": "Seçim Zaferi",
+      "description": "Partiniz seçimleri kazandı! Lider olarak, Başbakan olma konumundasınız. Hemen büyük reformlar için harekete geçecek misiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Türkiye'nin acil değişime ihtiyacı var"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": 10,
+        "optionText": "Temkinli hareket etmeliyiz"
+      },
+      "yesChainEventId": "ab_uyelik_gorusmeleri",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "askeri_etki",
+      "title": "Askeri Etki",
+      "description": "Ordu hala Türk siyasetinde önemli bir etkiye sahip. Güçlerini azaltmak için adımlar atacak mısınız?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Sivil kontrol sağlanmalıdır"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": 5,
+        "optionText": "Şimdilik orduyla çalışalım"
+      },
+      "yesChainEventId": "ergenekon_davasi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "basortusu_yasagi",
+      "title": "Başörtüsü Yasağı",
+      "description": "Kamu kurumlarında başörtüsü yasağı tartışmalı bir konu. Destekçilerinizin çoğu bu yasağın kaldırılmasını istiyor. Bu yasağı kaldırmak için harekete geçecek misiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 5,
+        "optionText": "Bu yasak dini özgürlükleri ihlal ediyor"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": -10,
+        "optionText": "Şimdi bu konuyu ele almanın zamanı değil"
+      },
+      "yesChainEventId": "laik_protestolar",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ab_uyelik_gorusmeleri",
+      "title": "AB Üyelik Görüşmeleri",
+      "description": "Avrupa Birliği, Türkiye ile üyelik görüşmelerini açmayı düşünüyor. Gerekli demokratik reformları uygulayacak mısınız?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": 10,
+        "communal": -5,
+        "optionText": "AB standartlarını karşılayacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Egemenliğimizden taviz vermeyeceğiz"
+      },
+      "yesChainEventId": "ekonomik_buyume",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "gulen_ittifaki",
+      "title": "Gülen İttifakı",
+      "description": "Gülen hareketi hükümetinize destek sunuyor. Ağları eğitim, medya ve yargıyı kapsıyor. Onlarla bir ittifak kuracak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 20,
+        "communal": 10,
+        "optionText": "Destekleri Türkiye'yi dönüştürmemize yardımcı olacak"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": -5,
+        "optionText": "Bağımsızlığımızı korumalıyız"
+      },
+      "yesChainEventId": "gulen_etkisi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "gezi_parki_protestolari",
+      "title": "Gezi Parkı Protestoları",
+      "description": "Protestocular kentsel gelişim planlarınıza karşı İstanbul'daki Gezi Parkı'nı işgal ediyor. Protestolar ülke çapında yayılıyor. Parkı zorla boşaltacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": 10,
+        "communal": -20,
+        "optionText": "Kanunsuzluğa izin vermeyeceğiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": 10,
+        "optionText": "Endişelerini dinleyelim"
+      },
+      "yesChainEventId": "uluslararasi_elestiri",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "kurt_baris_sureci",
+      "title": "Kürt Barış Süreci",
+      "description": "Kürt gruplarla barış görüşmelerine başlama fırsatı var. Resmi bir barış süreci başlatacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 10,
+        "wealth": 0,
+        "political": -10,
+        "communal": 20,
+        "optionText": "Bu çatışmayı diyalog yoluyla sonlandırma zamanı geldi"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 10,
+        "communal": -15,
+        "optionText": "Teröristlerle müzakere etmeyeceğiz"
+      },
+      "yesChainEventId": "baris_muzakereleri",
+      "noChainEventId": "pkk_catisma_tirmandirma",
+      "imagePath": null
+    },
+    {
+      "id": "suriye_ic_savasi",
+      "title": "Suriye İç Savaşı",
+      "description": "Suriye'de iç savaş patlak verdi. Esad rejimine karşı muhalif grupları destekleyecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Esad gitmeli"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -5,
+        "communal": -5,
+        "optionText": "Türkiye tarafsız kalmalı"
+      },
+      "yesChainEventId": "suriyeli_multeci_krizi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ekonomik_buyume",
+      "title": "Ekonomik Büyüme",
+      "description": "Türkiye ekonomisi hızla büyüyor. Büyük altyapı projelerine (yeni havalimanı, köprüler vb.) yatırım yapacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Bu projeler Türkiye'yi dönüştürecek"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Sürdürülebilir büyümeye odaklanmalıyız"
+      },
+      "yesChainEventId": "mega_projeler",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "gulen_etkisi",
+      "title": "Gülen Etkisi",
+      "description": "Gülen hareketi devlet kurumlarında önemli bir etki kazandı. İstihbarat raporları 'paralel devlet' oluşturduklarını öne sürüyor. Onlara karşı harekete geçecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": -15,
+        "optionText": "Bu tehdidi temizlemeliyiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 0,
+        "optionText": "Bunlar sadece söylenti"
+      },
+      "yesChainEventId": "darbe_girisimi",
+      "noChainEventId": "darbe_girisimi",
+      "imagePath": null
+    },
+    {
+      "id": "darbe_girisimi",
+      "title": "Darbe Girişimi",
+      "description": "Askeri bir darbe girişimi başladı! Ordu birlikleri sokaklarda ve savaş uçakları Ankara üzerinde uçuyor. Vatandaşları direnmeye ve sokaklara çıkmaya çağıracak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -15,
+        "wealth": 0,
+        "political": 25,
+        "communal": 20,
+        "optionText": "Tüm vatandaşları direnmeye çağırıyorum"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -50,
+        "communal": -50,
+        "optionText": "Darbe liderleriyle müzakere edeceğim"
+      },
+      "yesChainEventId": "darbe_sonrasi_tasfiye",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "darbe_sonrasi_tasfiye",
+      "title": "Darbe Sonrası Tasfiye",
+      "description": "Başarısız darbe girişiminden sonra, şüpheli Gülen destekçilerinin devlet kurumlarından tasfiye edilmesi çağrıları var. Tasfiye ne kadar geniş olmalı?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 20,
+        "communal": -15,
+        "optionText": "Tüm şüpheli Gülencileri uzaklaştırın"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": 10,
+        "optionText": "Sadece açık kanıtı olanları hedefleyin"
+      },
+      "yesChainEventId": "ohal_durumu",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "anayasa_referandumu",
+      "title": "Anayasa Referandumu",
+      "description": "Başkanlık sistemi oluşturmak için anayasayı değiştirme fırsatınız var. Bu referandum için bastıracak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 25,
+        "communal": -15,
+        "optionText": "Türkiye'nin güçlü bir başkanlık sistemine ihtiyacı var"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -20,
+        "communal": 10,
+        "optionText": "Parlamenter sistem Türkiye'ye iyi hizmet ediyor"
+      },
+      "yesChainEventId": "baskanlik_yetkileri",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "doviz_krizi",
+      "title": "Döviz Krizi",
+      "description": "Türk lirası değer kaybediyor. Merkez Bankası faiz oranlarını yükseltmeyi öneriyor. Bunu yapmalarına izin verecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 20,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Merkez Bankası gerekli önlemleri almalı"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -25,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Faiz, her kötülüğün anasıdır"
+      },
+      "yesChainEventId": "ekonomik_iyilesme",
+      "noChainEventId": "enflasyon_sarmal",
+      "imagePath": null
+    },
+    {
+      "id": "muhalefet_belediye_baskani",
+      "title": "Muhalefet Belediye Başkanı",
+      "description": "Muhalefet adayı İstanbul belediye başkanlığı seçimini dar bir farkla kazandı. Seçimin yenilenmesini talep edecek misiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 10,
+        "communal": -15,
+        "optionText": "Usulsüzlükler vardı"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": 10,
+        "optionText": "Seçmenlerin iradesine saygı duyuyoruz"
+      },
+      "yesChainEventId": "secim_yenileme",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ayasofya",
+      "title": "Ayasofya",
+      "description": "Ayasofya'nın müzeden camiye dönüştürülmesi çağrıları var. Bu dönüşümü destekleyecek misiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 15,
+        "communal": 5,
+        "optionText": "Ayasofya cami statüsüne geri dönmeli"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Tüm insanlık için müze olarak kalmalı"
+      },
+      "yesChainEventId": "uluslararasi_dini_elestiri",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "medya_duzenlemesi",
+      "title": "Medya Düzenlemesi",
+      "description": "Sosyal medya platformları hükümetinizi eleştirmek için kullanılıyor. Bu platformları düzenlemek için yeni bir yasa uygulayacak mısınız?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 15,
+        "communal": -20,
+        "optionText": "Vatandaşlarımızı zararlı içerikten korumalıyız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": 10,
+        "optionText": "Çevrimiçi ifade özgürlüğüne saygı duyacağız"
+      },
+      "yesChainEventId": "uluslararasi_basin_ozgurlugu_elestirisi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ekonomik_ortodoksluk",
+      "title": "Ekonomik Ortodoksluk",
+      "description": "Enflasyon rekor seviyelere ulaştı. Ekonomik danışmanlar ortodoks ekonomi politikalarına dönmeyi öneriyor. Kilit pozisyonlara geleneksel ekonomistler atayacak mısınız?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 25,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Deneyimli ekonomistlere ihtiyacımız var"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -30,
+        "political": 5,
+        "communal": -10,
+        "optionText": "Benzersiz ekonomik modelimizle devam edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "deprem_felaketi",
+      "title": "Deprem Felaketi",
+      "description": "Türkiye'yi yıkıcı bir deprem vurdu. Binlerce kişi enkaz altında. Uluslararası yardımı kabul edecek misiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 20,
+        "wealth": 10,
+        "political": -5,
+        "communal": 15,
+        "optionText": "Tüm uluslararası yardımı memnuniyetle karşılıyoruz"
+      },
+      "noImpact": {
+        "health": -20,
+        "wealth": -15,
+        "political": 5,
+        "communal": -25,
+        "optionText": "Türkiye bununla tek başına başa çıkabilecek kadar güçlü"
+      },
+      "yesChainEventId": "yeniden_yapilanma_cabalar",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "teror_saldirisi",
+      "title": "Terör Saldırısı",
+      "description": "İstanbul'da büyük bir terör saldırısı gerçekleşti. Genişletilmiş yetkilerle olağanüstü hal ilan edecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 10,
+        "wealth": 0,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Güvenliği sağlamak için özel yetkilere ihtiyacımız var"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Normal yasal çerçeve içinde yanıt vereceğiz"
+      },
+      "yesChainEventId": "guvenlik_sertlestirme",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "pandemi_yaniti",
+      "title": "Pandemi Yanıtı",
+      "description": "Küresel bir pandemi Türkiye'ye ulaştı. Sıkı karantina önlemleri uygulayacak mısınız?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 25,
+        "wealth": -20,
+        "political": -5,
+        "communal": -15,
+        "optionText": "Halk sağlığı önceliğimiz olmalı"
+      },
+      "noImpact": {
+        "health": -20,
+        "wealth": 5,
+        "political": 5,
+        "communal": 5,
+        "optionText": "Ekonomiyi çalışır durumda tutmalıyız"
+      },
+      "yesChainEventId": "ekonomik_iyilesme_plani",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "laik_protestolar",
+      "title": "Laik Protestolar",
+      "description": "Başörtüsü yasağını kaldırma kararınız laik gruplardan protestolara yol açtı. Bu protestolara nasıl yanıt vereceksiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": 10,
+        "communal": -15,
+        "optionText": "Protestoculara karşı sert önlemler alın"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": 10,
+        "optionText": "Barışçıl protestolara izin verin"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "pkk_catisma_tirmandirma",
+      "title": "PKK Çatışma Tırmandırma",
+      "description": "PKK, barış görüşmelerini sürdürmeme kararınızın ardından saldırılarını artırdı. Onlara karşı büyük bir askeri operasyon başlatacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -15,
+        "wealth": -10,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Teröristleri ezeceğiz"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Sadece hedefli operasyonlar kullanacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ergenekon_davasi",
+      "title": "Ergenekon Davası",
+      "description": "Askeri darbe planladığı iddia edilen bir grup subay ve sivil tutuklandı. Bu davaları destekleyecek misiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 20,
+        "communal": -15,
+        "optionText": "Demokrasimizi korumak için derin devleti temizlemeliyiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": 10,
+        "optionText": "Bu davalar siyasi motivasyonlu olabilir"
+      },
+      "yesChainEventId": "balyoz_davasi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "balyoz_davasi",
+      "title": "Balyoz Davası",
+      "description": "Ergenekon soruşturmasının ardından, 'Balyoz' adlı bir darbe planı ortaya çıkarıldı. Yüzlerce subay tutuklandı. Bu davaları ilerletecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Orduyu tamamen sivil kontrole almalıyız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Kanıtları daha dikkatli inceleyeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "suriyeli_multeci_krizi",
+      "title": "Suriyeli Mülteci Krizi",
+      "description": "Milyonlarca Suriyeli mülteci Türkiye'ye sığınıyor. Sınırları açık tutacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -10,
+        "wealth": -15,
+        "political": 5,
+        "communal": -10,
+        "optionText": "Ensar-Muhacir ilişkisi gereği kapılarımız açık kalacak"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Sınırlarımızı daha sıkı kontrol etmeliyiz"
+      },
+      "yesChainEventId": "ab_multeci_anlasmasi",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ab_multeci_anlasmasi",
+      "title": "AB Mülteci Anlaşması",
+      "description": "AB, Türkiye'nin mültecileri tutması karşılığında mali yardım ve vize serbestisi öneriyor. Bu anlaşmayı kabul edecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 15,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Bu anlaşma her iki taraf için de faydalı"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": -10,
+        "political": 5,
+        "communal": 5,
+        "optionText": "Avrupa'nın mülteci sorununu çözmeyeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "baris_muzakereleri",
+      "title": "Barış Müzakereleri",
+      "description": "Kürt barış süreci başladı. PKK lideri Abdullah Öcalan'ın mesajlarının halka okunmasına izin verecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 5,
+        "political": -10,
+        "communal": 15,
+        "optionText": "Barış için tüm kanalları açık tutmalıyız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": -10,
+        "optionText": "Terörist liderlerden mesajlar kabul edilemez"
+      },
+      "yesChainEventId": "dolmabahce_mutabakati",
+      "noChainEventId": "baris_sureci_bozulmasi",
+      "imagePath": null
+    },
+    {
+      "id": "dolmabahce_mutabakati",
+      "title": "Dolmabahçe Mutabakatı",
+      "description": "Hükümet ve Kürt siyasetçiler arasında bir mutabakat hazırlandı. Bu mutabakatı destekleyecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 10,
+        "wealth": 5,
+        "political": -15,
+        "communal": 20,
+        "optionText": "Barış sürecini ilerletmeliyiz"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": 10,
+        "communal": -15,
+        "optionText": "'Dolmabahçe'de böyle bir mutabakat yok'"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": "hendek_operasyonlari",
+      "imagePath": null
+    },
+    {
+      "id": "baris_sureci_bozulmasi",
+      "title": "Barış Süreci Bozulması",
+      "description": "Barış süreci geriliyor. PKK şehirlerde silahlanıyor. Güvenlik operasyonlarını yeniden başlatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -15,
+        "wealth": -5,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Terörle mücadeleye geri dönmeliyiz"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Barış sürecini kurtarmaya çalışmalıyız"
+      },
+      "yesChainEventId": "hendek_operasyonlari",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "hendek_operasyonlari",
+      "title": "Hendek Operasyonları",
+      "description": "PKK, güneydoğudaki şehirlerde hendekler kazıp kontrol noktaları kurdu. Büyük bir askeri operasyon başlatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -20,
+        "wealth": -10,
+        "political": 20,
+        "communal": -15,
+        "optionText": "Şehirlerimizi teröristlerden temizleyeceğiz"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": -15,
+        "communal": 5,
+        "optionText": "Sivil kayıpları önlemek için müzakereye devam edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ohal_durumu",
+      "title": "OHAL Durumu",
+      "description": "Darbe girişiminden sonra Olağanüstü Hal (OHAL) ilan edildi. OHAL'i uzatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 15,
+        "communal": -15,
+        "optionText": "Tehditler tamamen temizlenene kadar OHAL gerekli"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -10,
+        "communal": 10,
+        "optionText": "Normal demokratik düzene dönmeliyiz"
+      },
+      "yesChainEventId": "khk_duzeni",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "khk_duzeni",
+      "title": "KHK Düzeni",
+      "description": "OHAL kapsamında Kanun Hükmünde Kararnameler (KHK) ile yönetim yapılıyor. KHK'ları kapsamlı reformlar için kullanacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 20,
+        "communal": -20,
+        "optionText": "Hızlı ve etkili reformlar için KHK'lar gerekli"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": 10,
+        "optionText": "KHK'ları sadece güvenlik konularıyla sınırlandıracağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "baskanlik_yetkileri",
+      "title": "Başkanlık Yetkileri",
+      "description": "Yeni başkanlık sistemi onaylandı. Cumhurbaşkanlığı kararnameleriyle hızlı kararlar alacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Hızlı karar alma yetkisi Türkiye'yi güçlendirecek"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": 10,
+        "optionText": "Meclis'le işbirliği içinde çalışacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "secim_yenileme",
+      "title": "Seçim Yenileme",
+      "description": "YSK İstanbul seçimlerini yenileme kararı aldı. Partiniz yeniden seçim kampanyasına nasıl yaklaşacak?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 5,
+        "communal": -15,
+        "optionText": "Tüm gücümüzle kampanya yürüteceğiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Daha yumuşak bir yaklaşım benimseyeceğiz"
+      },
+      "yesChainEventId": "istanbul_secim_kaybı",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "istanbul_secim_kaybı",
+      "title": "İstanbul Seçim Kaybı",
+      "description": "Yenilenen İstanbul seçimlerini daha büyük bir farkla kaybettiniz. Bu sonuca nasıl yanıt vereceksiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": -10,
+        "optionText": "Seçim sonuçlarını sorgulayacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Sonuçları kabul edip dersler çıkaracağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "uluslararasi_dini_elestiri",
+      "title": "Uluslararası Dini Eleştiri",
+      "description": "Ayasofya'nın camiye dönüştürülmesi uluslararası eleştirilere yol açtı. Bu eleştirilere nasıl yanıt vereceksiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Bu Türkiye'nin egemenlik meselesidir"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -5,
+        "communal": -5,
+        "optionText": "Endişeleri gidermek için diyalog kuracağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "uluslararasi_basin_ozgurlugu_elestirisi",
+      "title": "Uluslararası Basın Özgürlüğü Eleştirisi",
+      "description": "Uluslararası kuruluşlar Türkiye'deki medya düzenlemelerini eleştiriyor. Bu eleştirilere nasıl yanıt vereceksiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Batı'nın çifte standardını reddediyoruz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -5,
+        "communal": 5,
+        "optionText": "Endişeleri dikkate alacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "enflasyon_sarmal",
+      "title": "Enflasyon Sarmalı",
+      "description": "Faiz politikanız sonucunda enflasyon kontrolden çıktı. Ekonomi politikanızı değiştirecek misiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -15,
+        "communal": 5,
+        "optionText": "Ortodoks ekonomi politikalarına dönmeliyiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -20,
+        "political": 5,
+        "communal": -15,
+        "optionText": "Türkiye Ekonomi Modeli doğru yoldadır"
+      },
+      "yesChainEventId": "ekonomik_iyilesme",
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ekonomik_iyilesme",
+      "title": "Ekonomik İyileşme",
+      "description": "Ekonomi politikalarınız olumlu sonuç vermeye başladı. Şimdi ne yapacaksınız?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": 10,
+        "communal": 10,
+        "optionText": "Ekonomik reformlara devam edeceğiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 5,
+        "communal": -5,
+        "optionText": "Ekonomik kazanımları siyasi projelere yönlendireceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "ekonomik_iyilesme_plani",
+      "title": "Ekonomik İyileşme Planı",
+      "description": "Pandemi ekonomiyi vurdu. Toparlanma için nasıl bir plan uygulayacaksınız?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 15,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Kapsamlı bir destek paketi sunacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": -5,
+        "communal": -10,
+        "optionText": "Piyasaların kendi kendine toparlanmasını bekleyeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "yeniden_yapilanma_cabalar",
+      "title": "Yeniden Yapılanma Çabaları",
+      "description": "Deprem sonrası yeniden yapılanma için nasıl bir strateji izleyeceksiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 10,
+        "wealth": -10,
+        "political": 15,
+        "communal": 15,
+        "optionText": "Devlet tüm yeniden yapılanmayı üstlenecek"
+      },
+      "noImpact": {
+        "health": 5,
+        "wealth": 5,
+        "political": -5,
+        "communal": -5,
+        "optionText": "Özel sektör ve STK'larla işbirliği yapacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "guvenlik_sertlestirme",
+      "title": "Güvenlik Sertleştirme",
+      "description": "Terör saldırıları sonrası güvenlik önlemlerini artırdınız. Bu önlemleri ne kadar sürdüreceksiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 5,
+        "wealth": -5,
+        "political": 15,
+        "communal": -15,
+        "optionText": "Tehdit tamamen ortadan kalkana kadar"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": 5,
+        "political": -5,
+        "communal": 10,
+        "optionText": "Kısa süreli ve hedefli önlemler yeterli"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "mega_projeler",
+      "title": "Mega Projeler",
+      "description": "Mega projeler (3. Köprü, İstanbul Havalimanı) ekonomiyi canlandırdı. Kanal İstanbul projesini başlatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -5,
+        "wealth": -15,
+        "political": 20,
+        "communal": -10,
+        "optionText": "Kanal İstanbul Türkiye'nin prestij projesi olacak"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Daha acil ekonomik sorunlara odaklanacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    },
+    {
+      "id": "uluslararasi_elestiri",
+      "title": "Uluslararası Eleştiri",
+      "description": "Gezi Parkı protestolarına müdahaleniz uluslararası eleştirilere yol açtı. Bu eleştirilere nasıl yanıt vereceksiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Batı'nın çifte standardını reddediyoruz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Endişeleri dikkate alacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null
+    }
+  ]
+}
