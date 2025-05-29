@@ -35,6 +35,15 @@ class EventRepository {
   /// Random number generator with secure seed
   final Random _random = Random.secure();
 
+  /// Tracks the last event type shown to manage sequence
+  EventType _lastEventType = EventType.none;
+
+  /// Tracks how many consecutive neutral events have been shown
+  int _consecutiveNeutralCount = 0;
+
+  /// Maximum number of consecutive neutral events allowed
+  final int _maxConsecutiveNeutral = 2;
+
   /// Constructor that initializes the event cards
   EventRepository() {
     loadEventsFromJson();
@@ -52,10 +61,15 @@ class EventRepository {
       });
     }
 
-    // First check if there are any chain events
+    // First check if there are any chain events - these always take priority
     if (_chainEvents.isNotEmpty) {
+      _lastEventType = EventType.chain;
+      _consecutiveNeutralCount = 0;
       return _chainEvents.removeAt(0);
     }
+
+    // Determine what type of event to show next based on sequence logic
+    EventType nextEventType = _determineNextEventType();
 
     // Filter events by era
     List<EventCard> eraEvents =
@@ -72,16 +86,88 @@ class EventRepository {
     // If all era events have been shown, create a special "era complete" event
     // that signals the game should move to the next era
     if (eraEvents.isEmpty) {
-      return _createEraCompleteEvent(era);
+      getNextEvent(GameEra.values[era.index + 1], turn); // Move to next era
+      // Recursively try to get next event
+    }
+
+    // Filter events by type (neutral or main)
+    List<EventCard> filteredEvents;
+    if (nextEventType == EventType.neutral) {
+      filteredEvents = eraEvents.where((event) => event.isNeutral).toList();
+
+      // If no neutral events available, fall back to main events
+      if (filteredEvents.isEmpty) {
+        nextEventType = EventType.main;
+        filteredEvents = eraEvents.where((event) => !event.isNeutral).toList();
+      }
+    } else {
+      // Main events
+      filteredEvents = eraEvents.where((event) => !event.isNeutral).toList();
+
+      // If no main events available, fall back to neutral events
+      if (filteredEvents.isEmpty) {
+        nextEventType = EventType.neutral;
+        filteredEvents = eraEvents.where((event) => event.isNeutral).toList();
+      }
+    }
+
+    // If still no events available after filtering, use any available event
+    if (filteredEvents.isEmpty) {
+      filteredEvents = eraEvents;
     }
 
     // Apply improved weighting and randomization to event selection
-    EventCard selectedEvent = _getImprovedRandomEvent(eraEvents);
+    EventCard selectedEvent = _getImprovedRandomEvent(filteredEvents);
 
     // Mark as shown to prevent repetition
     _shownEvents[era]!.add(selectedEvent.id);
 
+    // Update tracking variables
+    _lastEventType =
+        selectedEvent.isNeutral ? EventType.neutral : EventType.main;
+    if (selectedEvent.isNeutral) {
+      _consecutiveNeutralCount++;
+    } else {
+      _consecutiveNeutralCount = 0;
+    }
+
     return selectedEvent;
+  }
+
+  /// Determines what type of event to show next based on sequence logic
+  EventType _determineNextEventType() {
+    // If we've shown too many neutral events in a row, force a main event
+    if (_consecutiveNeutralCount >= _maxConsecutiveNeutral) {
+      return EventType.main;
+    }
+
+    // Base probabilities for event type selection
+    double neutralProb;
+
+    // Adjust probabilities based on last event type
+    switch (_lastEventType) {
+      case EventType.main:
+        // After a main event, higher chance of neutral
+        neutralProb = 0.7;
+        break;
+      case EventType.neutral:
+        // After a neutral event, lower chance of another neutral
+        neutralProb = 0.3;
+        break;
+      case EventType.chain:
+        // After a chain event, moderate chance of neutral
+        neutralProb = 0.5;
+        break;
+      case EventType.none:
+        // At the start, equal chance
+        neutralProb = 0.5;
+        break;
+    }
+
+    // Random selection based on probabilities
+    return _random.nextDouble() < neutralProb
+        ? EventType.neutral
+        : EventType.main;
   }
 
   /// Creates a special event that signals the end of an era
@@ -89,7 +175,8 @@ class EventRepository {
     return EventCard(
       id: 'era_transition_${era.toString()}',
       title: 'Dönem Sonu: ${era.displayName}',
-      description: 'Bu dönemdeki önemli olaylar geride kaldı. Türkiye yeni bir döneme giriyor.',
+      description:
+          'Bu dönemdeki önemli olaylar geride kaldı. Türkiye yeni bir döneme giriyor.',
       era: era,
       yesImpact: ValueImpact(
         health: 5,
@@ -118,7 +205,7 @@ class EventRepository {
     );
 
     _chainEvents.add(event);
-    
+
     // Also mark as shown in its era to prevent it from appearing again in normal sequence
     _shownEvents[event.era]!.add(event.id);
   }
@@ -139,18 +226,18 @@ class EventRepository {
     // Calculate total weight for reservoir sampling
     int totalWeight = 0;
     final weights = <int>[];
-    
+
     for (var event in events) {
       final weight = _getEventWeight(event);
       weights.add(weight);
       totalWeight += weight;
     }
-    
+
     // Use weighted reservoir sampling for better randomization
     // This algorithm ensures fair selection based on weights
     int selectedIndex = 0;
     double maxWeight = 0;
-    
+
     for (int i = 0; i < events.length; i++) {
       // Take random value according to weight
       final r = pow(_random.nextDouble(), 1.0 / weights[i]);
@@ -159,7 +246,7 @@ class EventRepository {
         selectedIndex = i;
       }
     }
-    
+
     return events[selectedIndex];
   }
 
@@ -172,6 +259,11 @@ class EventRepository {
     // Chain events are slightly more important
     if (event.yesChainEventId != null || event.noChainEventId != null) {
       weight += 5;
+    }
+
+    // Neutral events have slightly lower weight by default
+    if (event.isNeutral) {
+      weight -= 2;
     }
 
     // Events with significant impacts are more important
@@ -293,6 +385,9 @@ class EventRepository {
       delayTurns: json['noImpact']['delayTurns'] ?? 0,
     );
 
+    // Check if this is a neutral event
+    final isNeutral = json['isNeutralEvent'] ?? false;
+
     // Create and return the EventCard
     return EventCard(
       id: json['id'],
@@ -304,6 +399,7 @@ class EventRepository {
       yesChainEventId: json['yesChainEventId'],
       noChainEventId: json['noChainEventId'],
       imagePath: json['imagePath'],
+      isNeutral: isNeutral,
     );
   }
 
@@ -340,18 +436,52 @@ class EventRepository {
     // Add more hardcoded events as needed...
     // This is just a fallback in case JSON loading fails
   }
-  
+
   /// Reset the shown events tracking (useful for testing or starting a new game)
   void resetShownEvents() {
     for (var era in GameEra.values) {
       _shownEvents[era]!.clear();
     }
+    _lastEventType = EventType.none;
+    _consecutiveNeutralCount = 0;
   }
-  
+
   /// Get the count of remaining events for an era
   int getRemainingEventCount(GameEra era) {
     final eraEvents = allEvents.where((event) => event.era == era).toList();
     final shownCount = _shownEvents[era]!.length;
     return eraEvents.length - shownCount;
   }
+
+  /// Get the count of remaining neutral events for an era
+  int getRemainingNeutralEventCount(GameEra era) {
+    final neutralEvents = allEvents
+        .where((event) => event.era == era && event.isNeutral)
+        .toList();
+    final shownNeutralIds = _shownEvents[era]!
+        .where(
+            (id) => allEvents.any((event) => event.id == id && event.isNeutral))
+        .toList();
+    return neutralEvents.length - shownNeutralIds.length;
+  }
+
+  /// Get the count of remaining main events for an era
+  int getRemainingMainEventCount(GameEra era) {
+    final mainEvents = allEvents
+        .where((event) => event.era == era && !event.isNeutral)
+        .toList();
+    final shownMainIds = _shownEvents[era]!
+        .where((id) =>
+            allEvents.any((event) => event.id == id && !event.isNeutral))
+        .toList();
+    return mainEvents.length - shownMainIds.length;
+  }
+}
+
+/// Enum to track event types for sequencing
+enum EventType {
+  main,
+  neutral,
+  chain,
+  none,
 }

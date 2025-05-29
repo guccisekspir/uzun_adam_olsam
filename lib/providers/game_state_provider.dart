@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/event_card.dart';
-import '../models/game_values.dart' hide GameEra;
+import '../models/game_values.dart';
 import '../repositories/event_repository.dart';
 
-/// Oyun durumu için enum
+/// Oyun durumu enum
 enum GameState {
   playing,
   gameOver,
 }
 
-/// Oyun değerlerini ve durumunu yöneten provider
+/// Oyun durumu provider
 class GameStateNotifier extends StateNotifier<GameValues> {
   final EventRepository _eventRepository;
 
@@ -93,6 +93,8 @@ class GameStateNotifier extends StateNotifier<GameValues> {
 
   /// Oyunu yeniden başlatır
   void restartGame() {
+    _eventRepository.resetShownEvents();
+    
     state = const GameValues(
       health: 50,
       wealth: 50,
@@ -104,44 +106,76 @@ class GameStateNotifier extends StateNotifier<GameValues> {
       gameState: GameState.playing,
       turnCount: 0,
     );
-
     _loadNextEvent();
   }
 
   /// Bir sonraki olayı yükler
   void _loadNextEvent() {
-    debugPrint(
-        'Loading next event for era: $state.currentEvent, turn: $turnCount');
-
-    state = state.copyWith(
-      health: state.health,
-      wealth: state.wealth,
-      political: state.political,
-      communal: state.communal,
-      currentEvent: _eventRepository.getNextEvent(state.currentEra, turnCount),
-    );
+    debugPrint('Loading next event for era: ${state.currentEra}, turn: $turnCount');
+    
+    final nextEvent = _eventRepository.getNextEvent(state.currentEra, turnCount);
+    
+    // Check if this is an era transition event
+    if (nextEvent.id.startsWith('era_transition_')) {
+      // Handle era transition
+      _handleEraTransition(nextEvent);
+    } else {
+      // Regular event
+      state = state.copyWith(
+        currentEvent: nextEvent,
+      );
+    }
   }
+
+  /// Handle era transition events
+  void _handleEraTransition(EventCard transitionEvent) {
+    debugPrint('Handling era transition from ${state.currentEra}');
+    
+    // Determine the next era
+    GameEra nextEra;
+    switch (state.currentEra) {
+      case GameEra.iktidara_yukselis:
+        nextEra = GameEra.konsolidasyon;
+        break;
+      case GameEra.konsolidasyon:
+        nextEra = GameEra.kriz_ve_tepki;
+        break;
+      case GameEra.kriz_ve_tepki:
+        nextEra = GameEra.gec_donem;
+        break;
+      case GameEra.gec_donem:
+        // If we're already in the last era, stay there
+        nextEra = GameEra.gec_donem;
+        break;
+    }
+    
+    // Show the transition event first
+    state = state.copyWith(
+      currentEvent: transitionEvent,
+      // Don't update the era yet - we'll do that after the player makes a choice
+    );
+    
+    // Store the next era to transition to after player makes a choice
+    _nextEraAfterTransition = nextEra;
+  }
+  
+  // Store the next era to transition to after a transition event
+  GameEra? _nextEraAfterTransition;
 
   /// Turu ilerletir
   void _advanceTurn() {
     state = state.copyWith(
       turnCount: state.turnCount + 1,
     );
-
-    GameEra? newEra;
-
-    // Dönem değişimi kontrolü
-    if (turnCount >= 10 && state.currentEvent == GameEra.iktidara_yukselis) {
-      newEra = GameEra.konsolidasyon;
-    } else if (turnCount >= 20 && state.currentEvent == GameEra.konsolidasyon) {
-      newEra = GameEra.kriz_ve_tepki;
-    } else if (turnCount >= 30 && state.currentEvent == GameEra.gec_donem) {
-      newEra = GameEra.gec_donem;
+    
+    // Check if we need to transition to a new era after a transition event
+    if (_nextEraAfterTransition != null) {
+      debugPrint('Transitioning to new era: $_nextEraAfterTransition');
+      state = state.copyWith(
+        currentEra: _nextEraAfterTransition,
+      );
+      _nextEraAfterTransition = null;
     }
-
-    state = state.copyWith(
-      currentEra: newEra ?? state.currentEra,
-    );
 
     // Doğal değer azalması
     state = state.applyDecay();
@@ -159,6 +193,7 @@ class GameStateNotifier extends StateNotifier<GameValues> {
   void _checkGameOver() {
     GameState? newGameState;
     String? _gameOverReason;
+
     if (state.health <= 0) {
       newGameState = GameState.gameOver;
       _gameOverReason = "Halk sağlığı ve refahı çöktü. Hükümetiniz düştü.";
