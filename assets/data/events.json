@@ -1057,6 +1057,270 @@
       "yesChainEventId": null,
       "noChainEventId": null,
       "imagePath": null
+    },
+    {
+      "id": "oglu_yatirim_istiyor",
+      "title": "Oğlunuz Yatırım İçin Para İstiyor",
+      "description": "Oğlunuz, yurt dışında bir gemicilik yatırımı yapmak istiyor. Sizin adınızı kullanarak bazı avantajlar sağlamayı da planlıyor.",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -15,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Ailem önceliğimdir, destekleyeceğim"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": 5,
+        "communal": 5,
+        "optionText": "Devletin çıkarı her şeyden önce gelir"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "yardimci_torpil_istiyor",
+      "title": "Yardımcınız Torpil Talebinde Bulunuyor",
+      "description": "En yakın yardımcınız, kızının merkezi bir bakanlıkta işe alınması için sizden referans olmanızı istiyor.",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": -10,
+        "optionText": "Ailemizi kırmak olmaz, yardımcı olacağım"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 5,
+        "optionText": "Liyakat esas alınmalı"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "amca_ev_istiyor",
+      "title": "Amcanız Devletten Ev Talep Ediyor",
+      "description": "Amcanız, TOKİ'den özel bir konut projesinden ev tahsis edilmesini istiyor. Bu durum medyaya sızarsa yolsuzluk iddiaları gündeme gelebilir.",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Aile büyüklerimizi üzmeyelim"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Devlet kaynakları şahsi çıkarlar için kullanılamaz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "yardimci_skandal",
+      "title": "Yardımcının Skandal Videosu",
+      "description": "Bir yardımcınızın uygunsuz bir video kaydı basına sızdı. Skandal büyüyor. Onu görevden alacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 10,
+        "communal": 5,
+        "optionText": "İtibar önemli, görevden alınmalı"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": -10,
+        "optionText": "Özel hayat devlet işine karışmaz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "esin_sosyete_baski",
+      "title": "Eşinizin Sosyeteye Katılma İsteği",
+      "description": "Eşiniz bazı sosyetik etkinliklerde daha görünür olmak istiyor. Bu talep muhafazakâr kesimden tepki görebilir.",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 5,
+        "wealth": -5,
+        "political": -5,
+        "communal": -10,
+        "optionText": "Destek olacağım, kadınlar özgür olmalı"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Toplum hassasiyetleri önceliklidir"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "damat_ekonomi_kurulu",
+      "title": "Damadınızı Ekonomi Kurulu’na Atamak",
+      "description": "Damadınız ekonomi yönetiminde etkili bir pozisyon istiyor. Bu hamle aile içi uyumu sağlarken, dışarıda nepotizm eleştirilerine yol açabilir.",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Aile güvenilirlik demektir, atayacağım"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Liyakat esas alınmalı"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "vakif_bagisi_talebi",
+      "title": "Yakınınızın Vakfına Bağış Talebi",
+      "description": "Eski bir dostunuz, devlet kurumlarından kendi vakfına bağış yapılmasını talep ediyor. Bu durum basına sızarsa yolsuzluk iddiaları gündeme gelebilir.",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": -5,
+        "communal": -10,
+        "optionText": "Dostlar zor zamanlarda belli olur"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Devlet desteği şeffaf olmalı"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "medya_patronu_destek",
+      "title": "Medya Patronu Destek Talebi",
+      "description": "Bir medya patronu, hükümet yanlısı yayınlarını sürdürmek için vergi affı istiyor. Reddederseniz medya çizgisi değişebilir.",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Destekleyeni desteklemek gerekir"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -10,
+        "communal": 0,
+        "optionText": "Vergi adaleti şart"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "esinizin_saglik_sorunu",
+      "title": "Eşinizin Sağlık Sorunu",
+      "description": "Eşiniz ciddi bir sağlık sorunu yaşıyor. Tedavi için yurt dışına gitmeyi teklif ediyor. Halkın gözünde 'milli hastanelere güvenmeme' algısı oluşabilir.",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 10,
+        "wealth": -5,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Ailemin sağlığı her şeyden önce gelir"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Yerli sağlık sistemine güvenmeliyiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "bakanlar_arasi_cekisme",
+      "title": "Bakanlar Arasında Güç Savaşı",
+      "description": "İki önemli bakanınız birbirine rakip oldu. Taraflardan birini görevden almanız krizi büyütebilir.",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Zayıf olanı görevden alacağım"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -10,
+        "communal": 10,
+        "optionText": "Arabuluculuk yapacağım"
+      },
+      "yesChainEventId": "bakan_intikam",
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
+    },
+    {
+      "id": "bakan_intikam",
+      "title": "Görevden Alınan Bakan Misilleme Yapıyor",
+      "description": "Görevden aldığınız bakan, basına bazı gizli belgeler sızdırmaya başladı. Krizi nasıl yöneteceksiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -5,
+        "wealth": -10,
+        "political": -10,
+        "communal": -10,
+        "optionText": "Sessizce etkisizleştirin"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -20,
+        "communal": 5,
+        "optionText": "Yargıya devredeceğim"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true
     }
   ]
 }

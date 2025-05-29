@@ -24,11 +24,16 @@ class EventRepository {
   /// Events that have been triggered by chain reactions
   final List<EventCard> _chainEvents = [];
 
-  /// Events that have been shown recently
-  final List<String> _recentlyShownEvents = [];
+  /// Events that have been shown to the player, tracked by era
+  final Map<GameEra, Set<String>> _shownEvents = {
+    GameEra.iktidara_yukselis: {},
+    GameEra.konsolidasyon: {},
+    GameEra.kriz_ve_tepki: {},
+    GameEra.gec_donem: {},
+  };
 
-  /// Random number generator
-  final Random _random = Random();
+  /// Random number generator with secure seed
+  final Random _random = Random.secure();
 
   /// Constructor that initializes the event cards
   EventRepository() {
@@ -37,8 +42,7 @@ class EventRepository {
 
   /// Gets the next event card based on the current game state
   EventCard getNextEvent(GameEra era, int turn) {
-    // First check if there are any chain events
-
+    // Check if events are loaded, if not load them
     if (allEvents.isEmpty) {
       loadEventsFromJson().then((_) {
         debugPrint('Events loaded successfully');
@@ -47,6 +51,8 @@ class EventRepository {
         debugPrint('Error loading events: $error');
       });
     }
+
+    // First check if there are any chain events
     if (_chainEvents.isNotEmpty) {
       return _chainEvents.removeAt(0);
     }
@@ -60,27 +66,46 @@ class EventRepository {
       return _getRandomEventWithWeighting();
     }
 
-    // Remove recently shown events to avoid repetition
-    eraEvents.removeWhere((event) => _recentlyShownEvents.contains(event.id));
+    // Remove already shown events to prevent repetition
+    eraEvents.removeWhere((event) => _shownEvents[era]!.contains(event.id));
 
-    // If all era events have been shown recently, reset the recently shown list
+    // If all era events have been shown, create a special "era complete" event
+    // that signals the game should move to the next era
     if (eraEvents.isEmpty) {
-      _recentlyShownEvents.clear();
-      eraEvents = allEvents.where((event) => event.era == era).toList();
+      return _createEraCompleteEvent(era);
     }
 
-    // Apply weighting to event selection
-    EventCard selectedEvent = _getWeightedRandomEvent(eraEvents);
+    // Apply improved weighting and randomization to event selection
+    EventCard selectedEvent = _getImprovedRandomEvent(eraEvents);
 
-    // Add to recently shown events
-    _recentlyShownEvents.add(selectedEvent.id);
-
-    // Keep recently shown events list at a reasonable size
-    if (_recentlyShownEvents.length > 10) {
-      _recentlyShownEvents.removeAt(0);
-    }
+    // Mark as shown to prevent repetition
+    _shownEvents[era]!.add(selectedEvent.id);
 
     return selectedEvent;
+  }
+
+  /// Creates a special event that signals the end of an era
+  EventCard _createEraCompleteEvent(GameEra era) {
+    return EventCard(
+      id: 'era_transition_${era.toString()}',
+      title: 'Dönem Sonu: ${era.displayName}',
+      description: 'Bu dönemdeki önemli olaylar geride kaldı. Türkiye yeni bir döneme giriyor.',
+      era: era,
+      yesImpact: ValueImpact(
+        health: 5,
+        wealth: 5,
+        political: 5,
+        communal: 5,
+        optionText: 'Yeni döneme geç',
+      ),
+      noImpact: ValueImpact(
+        health: 0,
+        wealth: 0,
+        political: 0,
+        communal: 0,
+        optionText: 'Bekle',
+      ),
+    );
   }
 
   /// Adds a chain event to be triggered next
@@ -93,52 +118,68 @@ class EventRepository {
     );
 
     _chainEvents.add(event);
+    
+    // Also mark as shown in its era to prevent it from appearing again in normal sequence
+    _shownEvents[event.era]!.add(event.id);
   }
 
   /// Gets a random event with weighting applied
   EventCard _getRandomEventWithWeighting() {
     // Apply weighting to all events
-    return _getWeightedRandomEvent(allEvents);
+    return _getImprovedRandomEvent(allEvents);
   }
 
-  /// Gets a weighted random event from a list of events
-  EventCard _getWeightedRandomEvent(List<EventCard> events) {
+  /// Gets a weighted random event from a list of events with improved randomization
+  EventCard _getImprovedRandomEvent(List<EventCard> events) {
     // If list is empty, return a fallback event
     if (events.isEmpty) {
       return _createFallbackEvent();
     }
 
-    // Apply weighting based on event type
-    List<EventCard> weightedEvents = [];
-
+    // Calculate total weight for reservoir sampling
+    int totalWeight = 0;
+    final weights = <int>[];
+    
     for (var event in events) {
-      // Add event multiple times based on weighting
-      int weight = _getEventWeight(event);
-      for (int i = 0; i < weight; i++) {
-        weightedEvents.add(event);
+      final weight = _getEventWeight(event);
+      weights.add(weight);
+      totalWeight += weight;
+    }
+    
+    // Use weighted reservoir sampling for better randomization
+    // This algorithm ensures fair selection based on weights
+    int selectedIndex = 0;
+    double maxWeight = 0;
+    
+    for (int i = 0; i < events.length; i++) {
+      // Take random value according to weight
+      final r = pow(_random.nextDouble(), 1.0 / weights[i]);
+      if (r > maxWeight) {
+        maxWeight = r.toDouble();
+        selectedIndex = i;
       }
     }
-
-    // Shuffle and select a random event
-    weightedEvents.shuffle(_random);
-    return weightedEvents[_random.nextInt(weightedEvents.length)];
+    
+    return events[selectedIndex];
   }
 
-  /// Gets the weight for an event based on its properties
+  /// Gets the weight for an event based on its properties with improved weighting
   int _getEventWeight(EventCard event) {
     // Base weight
-    int weight = 1;
+    int weight = 10;
 
-    // Increase weight for events with chain reactions
+    // Adjust weight based on event properties
+    // Chain events are slightly more important
     if (event.yesChainEventId != null || event.noChainEventId != null) {
-      weight += 1;
+      weight += 5;
     }
 
-    // Increase weight for events with significant impacts
+    // Events with significant impacts are more important
     int totalImpact = _calculateTotalImpact(event);
-    if (totalImpact > 30) {
-      weight += 1;
-    }
+    weight += (totalImpact ~/ 10); // Add 1 weight per 10 impact points
+
+    // Add some randomness to the weight to prevent predictable patterns
+    weight += _random.nextInt(5);
 
     return weight;
   }
@@ -298,5 +339,19 @@ class EventRepository {
 
     // Add more hardcoded events as needed...
     // This is just a fallback in case JSON loading fails
+  }
+  
+  /// Reset the shown events tracking (useful for testing or starting a new game)
+  void resetShownEvents() {
+    for (var era in GameEra.values) {
+      _shownEvents[era]!.clear();
+    }
+  }
+  
+  /// Get the count of remaining events for an era
+  int getRemainingEventCount(GameEra era) {
+    final eraEvents = allEvents.where((event) => event.era == era).toList();
+    final shownCount = _shownEvents[era]!.length;
+    return eraEvents.length - shownCount;
   }
 }

@@ -1,5 +1,5 @@
-import 'package:erdogan_leadership_game/models/event_card.dart';
-import 'package:erdogan_leadership_game/providers/game_state_provider.dart';
+import '../models/event_card.dart';
+import '../providers/game_state_provider.dart';
 import 'package:flutter/material.dart';
 
 /// Oyun değerleri sınıfı
