@@ -32,6 +32,14 @@ class EventRepository {
     GameEra.gec_donem: {},
   };
 
+  /// Tracks if an era transition event has been shown for each era
+  final Map<GameEra, bool> _eraTransitionShown = {
+    GameEra.iktidara_yukselis: false,
+    GameEra.konsolidasyon: false,
+    GameEra.kriz_ve_tepki: false,
+    GameEra.gec_donem: false,
+  };
+
   /// Random number generator with secure seed
   final Random _random = Random.secure();
 
@@ -86,8 +94,39 @@ class EventRepository {
     // If all era events have been shown, create a special "era complete" event
     // that signals the game should move to the next era
     if (eraEvents.isEmpty) {
-      getNextEvent(GameEra.values[era.index + 1], turn); // Move to next era
-      // Recursively try to get next event
+      // Check if we've already shown the transition event for this era
+      if (_eraTransitionShown[era]!) {
+        // If we've already shown the transition event, move to the next era
+        GameEra nextEra;
+        if (era == GameEra.gec_donem) {
+          // For the last era, create a special "game complete" event
+          return _createGameCompleteEvent();
+        } else {
+          // For other eras, determine the next era
+          switch (era) {
+            case GameEra.iktidara_yukselis:
+              nextEra = GameEra.konsolidasyon;
+              break;
+            case GameEra.konsolidasyon:
+              nextEra = GameEra.kriz_ve_tepki;
+              break;
+            case GameEra.kriz_ve_tepki:
+              nextEra = GameEra.gec_donem;
+              break;
+            default:
+              nextEra = GameEra.gec_donem;
+          }
+
+          // Get an event from the next era
+          return getNextEvent(nextEra, turn);
+        }
+      } else {
+        // Mark that we've shown the transition event for this era
+        _eraTransitionShown[era] = true;
+
+        // Return the era transition event
+        return _createEraCompleteEvent(era);
+      }
     }
 
     // Filter events by type (neutral or main)
@@ -191,6 +230,31 @@ class EventRepository {
         political: 0,
         communal: 0,
         optionText: 'Bekle',
+      ),
+    );
+  }
+
+  /// Creates a special event that signals the completion of the game
+  EventCard _createGameCompleteEvent() {
+    return EventCard(
+      id: 'game_complete',
+      title: 'Liderlik Yolculuğunuz Tamamlandı',
+      description:
+          'Türkiye\'nin liderliğinde uzun ve zorlu bir yolculuk geçirdiniz. Kararlarınız ülkenin geleceğini şekillendirdi.',
+      era: GameEra.gec_donem,
+      yesImpact: ValueImpact(
+        health: 10,
+        wealth: 10,
+        political: 10,
+        communal: 10,
+        optionText: 'Yeni bir oyuna başla',
+      ),
+      noImpact: ValueImpact(
+        health: 5,
+        wealth: 5,
+        political: 5,
+        communal: 5,
+        optionText: 'Devam et',
       ),
     );
   }
@@ -441,6 +505,7 @@ class EventRepository {
   void resetShownEvents() {
     for (var era in GameEra.values) {
       _shownEvents[era]!.clear();
+      _eraTransitionShown[era] = false;
     }
     _lastEventType = EventType.none;
     _consecutiveNeutralCount = 0;

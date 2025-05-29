@@ -94,7 +94,7 @@ class GameStateNotifier extends StateNotifier<GameValues> {
   /// Oyunu yeniden başlatır
   void restartGame() {
     _eventRepository.resetShownEvents();
-    
+
     state = const GameValues(
       health: 50,
       wealth: 50,
@@ -111,10 +111,12 @@ class GameStateNotifier extends StateNotifier<GameValues> {
 
   /// Bir sonraki olayı yükler
   void _loadNextEvent() {
-    debugPrint('Loading next event for era: ${state.currentEra}, turn: $turnCount');
-    
-    final nextEvent = _eventRepository.getNextEvent(state.currentEra, turnCount);
-    
+    debugPrint(
+        'Loading next event for era: ${state.currentEra}, turn: $turnCount');
+
+    final nextEvent =
+        _eventRepository.getNextEvent(state.currentEra, turnCount);
+
     // Check if this is an era transition event
     if (nextEvent.id.startsWith('era_transition_')) {
       // Handle era transition
@@ -130,7 +132,7 @@ class GameStateNotifier extends StateNotifier<GameValues> {
   /// Handle era transition events
   void _handleEraTransition(EventCard transitionEvent) {
     debugPrint('Handling era transition from ${state.currentEra}');
-    
+
     // Determine the next era
     GameEra nextEra;
     switch (state.currentEra) {
@@ -148,17 +150,18 @@ class GameStateNotifier extends StateNotifier<GameValues> {
         nextEra = GameEra.gec_donem;
         break;
     }
-    
+
     // Show the transition event first
     state = state.copyWith(
       currentEvent: transitionEvent,
+      currentEra: nextEra,
       // Don't update the era yet - we'll do that after the player makes a choice
     );
-    
+
     // Store the next era to transition to after player makes a choice
     _nextEraAfterTransition = nextEra;
   }
-  
+
   // Store the next era to transition to after a transition event
   GameEra? _nextEraAfterTransition;
 
@@ -167,7 +170,7 @@ class GameStateNotifier extends StateNotifier<GameValues> {
     state = state.copyWith(
       turnCount: state.turnCount + 1,
     );
-    
+
     // Check if we need to transition to a new era after a transition event
     if (_nextEraAfterTransition != null) {
       debugPrint('Transitioning to new era: $_nextEraAfterTransition');
