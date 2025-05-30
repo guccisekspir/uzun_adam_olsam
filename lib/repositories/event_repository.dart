@@ -24,6 +24,9 @@ class EventRepository {
   /// Events that have been triggered by chain reactions
   final List<EventCard> _chainEvents = [];
 
+  /// Waiting queue for chain events to ensure neutral events between them
+  final List<EventCard> _chainEventWaitingQueue = [];
+
   /// Events that have been shown to the player, tracked by era
   final Map<GameEra, Set<String>> _shownEvents = {
     GameEra.iktidara_yukselis: {},
@@ -52,6 +55,9 @@ class EventRepository {
   /// Maximum number of consecutive neutral events allowed
   final int _maxConsecutiveNeutral = 2;
 
+  /// Flag to track if we need to show a neutral event before the next chain event
+  bool _needNeutralBeforeChain = false;
+
   /// Constructor that initializes the event cards
   EventRepository() {
     loadEventsFromJson();
@@ -69,11 +75,62 @@ class EventRepository {
       });
     }
 
-    // First check if there are any chain events - these always take priority
-    if (_chainEvents.isNotEmpty) {
-      _lastEventType = EventType.chain;
-      _consecutiveNeutralCount = 0;
-      return _chainEvents.removeAt(0);
+    // Handle chain events with waiting queue logic
+    if (_chainEvents.isNotEmpty || _chainEventWaitingQueue.isNotEmpty) {
+      // If we need a neutral event before showing a chain event
+      if (_needNeutralBeforeChain) {
+        // Try to find a neutral event
+        EventCard? neutralEvent = _getNextNeutralEvent(era);
+
+        // If we found a neutral event, show it and mark that we can show chain events next
+        if (neutralEvent != null) {
+          _needNeutralBeforeChain = false;
+          _lastEventType = EventType.neutral;
+          _consecutiveNeutralCount++;
+          return neutralEvent;
+        }
+        // If no neutral events available, we'll have to show a main event instead
+        else {
+          _needNeutralBeforeChain = false;
+        }
+      }
+
+      // If we have chain events in the active queue, show the next one
+      if (_chainEvents.isNotEmpty) {
+        // Mark that we need a neutral event before the next chain event
+        _needNeutralBeforeChain = true;
+        _lastEventType = EventType.chain;
+        _consecutiveNeutralCount = 0;
+        return _chainEvents.removeAt(0);
+      }
+
+      // If we have chain events in the waiting queue, move them to the active queue
+      if (_chainEventWaitingQueue.isNotEmpty) {
+        _chainEvents.addAll(_chainEventWaitingQueue);
+        _chainEventWaitingQueue.clear();
+
+        // If we just showed a chain event, we need a neutral event before showing another
+        if (_lastEventType == EventType.chain) {
+          _needNeutralBeforeChain = true;
+
+          // Try to find a neutral event
+          EventCard? neutralEvent = _getNextNeutralEvent(era);
+
+          // If we found a neutral event, show it
+          if (neutralEvent != null) {
+            _needNeutralBeforeChain = false;
+            _lastEventType = EventType.neutral;
+            _consecutiveNeutralCount++;
+            return neutralEvent;
+          }
+        }
+
+        // Show the next chain event
+        _needNeutralBeforeChain = true;
+        _lastEventType = EventType.chain;
+        _consecutiveNeutralCount = 0;
+        return _chainEvents.removeAt(0);
+      }
     }
 
     // Determine what type of event to show next based on sequence logic
@@ -129,34 +186,36 @@ class EventRepository {
       }
     }
 
-    // Filter events by type (neutral or main)
-    List<EventCard> filteredEvents;
+    // Handle event selection based on type
+    EventCard selectedEvent;
+
     if (nextEventType == EventType.neutral) {
-      filteredEvents = eraEvents.where((event) => event.isNeutral).toList();
+      // For neutral events, use random selection
+      List<EventCard> neutralEvents =
+          eraEvents.where((event) => event.isNeutral).toList();
 
       // If no neutral events available, fall back to main events
-      if (filteredEvents.isEmpty) {
+      if (neutralEvents.isEmpty) {
         nextEventType = EventType.main;
-        filteredEvents = eraEvents.where((event) => !event.isNeutral).toList();
+        selectedEvent = _getNextChronologicalMainEvent(eraEvents);
+      } else {
+        // Select a random neutral event
+        selectedEvent = _getImprovedRandomEvent(neutralEvents);
       }
     } else {
-      // Main events
-      filteredEvents = eraEvents.where((event) => !event.isNeutral).toList();
+      // For main events, use chronological selection
+      selectedEvent = _getNextChronologicalMainEvent(eraEvents);
 
       // If no main events available, fall back to neutral events
-      if (filteredEvents.isEmpty) {
+      if (selectedEvent.id == 'fallback_event') {
         nextEventType = EventType.neutral;
-        filteredEvents = eraEvents.where((event) => event.isNeutral).toList();
+        List<EventCard> neutralEvents =
+            eraEvents.where((event) => event.isNeutral).toList();
+        if (neutralEvents.isNotEmpty) {
+          selectedEvent = _getImprovedRandomEvent(neutralEvents);
+        }
       }
     }
-
-    // If still no events available after filtering, use any available event
-    if (filteredEvents.isEmpty) {
-      filteredEvents = eraEvents;
-    }
-
-    // Apply improved weighting and randomization to event selection
-    EventCard selectedEvent = _getImprovedRandomEvent(filteredEvents);
 
     // Mark as shown to prevent repetition
     _shownEvents[era]!.add(selectedEvent.id);
@@ -171,6 +230,86 @@ class EventRepository {
     }
 
     return selectedEvent;
+  }
+
+  /// Gets the next neutral event from the current era
+  EventCard? _getNextNeutralEvent(GameEra era) {
+    // Filter events by era and neutral type
+    List<EventCard> neutralEvents = allEvents
+        .where((event) => event.era == era && event.isNeutral)
+        .toList();
+
+    // Remove already shown events
+    neutralEvents.removeWhere((event) => _shownEvents[era]!.contains(event.id));
+
+    // If no neutral events available in this era, try other eras
+    if (neutralEvents.isEmpty) {
+      neutralEvents = allEvents.where((event) => event.isNeutral).toList();
+
+      // Remove already shown events from all eras
+      for (var currentEra in GameEra.values) {
+        neutralEvents.removeWhere((event) =>
+            event.era == currentEra &&
+            _shownEvents[currentEra]!.contains(event.id));
+      }
+
+      // If still no neutral events available, return null
+      if (neutralEvents.isEmpty) {
+        return null;
+      }
+    }
+
+    // Select a random neutral event
+    EventCard selectedEvent = _getImprovedRandomEvent(neutralEvents);
+
+    // Mark as shown to prevent repetition
+    _shownEvents[selectedEvent.era]!.add(selectedEvent.id);
+
+    return selectedEvent;
+  }
+
+  /// Gets the next chronological main event from a list of events
+  EventCard _getNextChronologicalMainEvent(List<EventCard> events) {
+    // Filter to only main (non-neutral) events
+    List<EventCard> mainEvents =
+        events.where((event) => !event.isNeutral).toList();
+
+    if (mainEvents.isEmpty) {
+      return _createFallbackEvent();
+    }
+
+    // Assign sequence numbers based on predefined chronology
+    for (var event in mainEvents) {
+      event = _assignSequenceNumber(event);
+    }
+
+    // Sort by sequence number
+    mainEvents.sort((a, b) => a.sequence.compareTo(b.sequence));
+
+    // Return the earliest event in the chronology
+    return mainEvents.first;
+  }
+
+  /// Assigns a sequence number to an event based on predefined chronology
+  EventCard _assignSequenceNumber(EventCard event) {
+    // Get the sequence number from the predefined map
+    int sequence =
+        event.sequence ?? 999; // Default high number for unknown events
+
+    // Create a new event with the sequence number
+    return EventCard(
+      id: event.id,
+      title: event.title,
+      description: event.description,
+      era: event.era,
+      yesImpact: event.yesImpact,
+      noImpact: event.noImpact,
+      yesChainEventId: event.yesChainEventId,
+      noChainEventId: event.noChainEventId,
+      imagePath: event.imagePath,
+      isNeutral: event.isNeutral,
+      sequence: sequence,
+    );
   }
 
   /// Determines what type of event to show next based on sequence logic
@@ -231,6 +370,7 @@ class EventRepository {
         communal: 0,
         optionText: 'Bekle',
       ),
+      sequence: 1000, // High sequence number to ensure it comes last
     );
   }
 
@@ -256,6 +396,7 @@ class EventRepository {
         communal: 5,
         optionText: 'Devam et',
       ),
+      sequence: 1001, // Highest sequence number
     );
   }
 
@@ -268,7 +409,11 @@ class EventRepository {
       orElse: () => _getRandomEventWithWeighting(),
     );
 
-    _chainEvents.add(event);
+    // Assign sequence number to the chain event
+    final chainEvent = _assignSequenceNumber(event);
+
+    // Add to waiting queue instead of directly to chain events
+    _chainEventWaitingQueue.add(chainEvent);
 
     // Also mark as shown in its era to prevent it from appearing again in normal sequence
     _shownEvents[event.era]!.add(event.id);
@@ -377,6 +522,7 @@ class EventRepository {
         communal: -5,
         optionText: 'Olumsuz yaklaşım göster',
       ),
+      sequence: 9999, // Very high sequence number
     );
   }
 
@@ -452,6 +598,9 @@ class EventRepository {
     // Check if this is a neutral event
     final isNeutral = json['isNeutralEvent'] ?? false;
 
+    // Get sequence number from predefined map or use default
+    final sequence = json['sequence'] ?? (isNeutral ? 500 : 999);
+
     // Create and return the EventCard
     return EventCard(
       id: json['id'],
@@ -464,6 +613,7 @@ class EventRepository {
       noChainEventId: json['noChainEventId'],
       imagePath: json['imagePath'],
       isNeutral: isNeutral,
+      sequence: sequence,
     );
   }
 
@@ -494,6 +644,7 @@ class EventRepository {
           optionText: 'Perde arkasından destek vereceğim',
         ),
         yesChainEventId: 'secim_zaferi',
+        sequence: 1,
       ),
     );
 
@@ -509,6 +660,9 @@ class EventRepository {
     }
     _lastEventType = EventType.none;
     _consecutiveNeutralCount = 0;
+    _needNeutralBeforeChain = false;
+    _chainEvents.clear();
+    _chainEventWaitingQueue.clear();
   }
 
   /// Get the count of remaining events for an era

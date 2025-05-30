@@ -12,6 +12,7 @@ class EventCard {
   final String? noChainEventId;
   final String? imagePath;
   final bool isNeutral;
+  final int sequence;
 
   /// Constructor
   const EventCard({
@@ -25,6 +26,7 @@ class EventCard {
     this.noChainEventId,
     this.imagePath,
     this.isNeutral = false,
+    this.sequence = 0,
   });
 }
 
