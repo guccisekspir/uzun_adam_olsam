@@ -21,7 +21,7 @@
       },
       "yesChainEventId": "secim_zaferi",
       "noChainEventId": null,
-      "imagePath": "assets/events/Party Leadership.jpeg",
+      "imagePath": null,
       "sequence": 1
     },
     {
@@ -45,7 +45,7 @@
       },
       "yesChainEventId": "ab_uyelik_gorusmeleri",
       "noChainEventId": null,
-      "imagePath": "assets/events/Election Victory.jpeg",
+      "imagePath": null,
       "sequence": 2
     },
     {
@@ -69,7 +69,7 @@
       },
       "yesChainEventId": "ergenekon_davasi",
       "noChainEventId": null,
-      "imagePath": "assets/events/Military Influence.jpeg",
+      "imagePath": null,
       "sequence": 3
     },
     {
@@ -93,7 +93,7 @@
       },
       "yesChainEventId": "laik_protestolar",
       "noChainEventId": null,
-      "imagePath": "assets/events/Headscarf Ban.jpeg",
+      "imagePath": null,
       "sequence": 4
     },
     {
@@ -117,7 +117,7 @@
       },
       "yesChainEventId": "ekonomik_buyume",
       "noChainEventId": null,
-      "imagePath": "assets/events/EU Membership Negotiations.jpeg",
+      "imagePath": null,
       "sequence": 5
     },
     {
@@ -141,7 +141,7 @@
       },
       "yesChainEventId": "gulen_etkisi",
       "noChainEventId": null,
-      "imagePath": "assets/events/Gulen Alliance.jpeg",
+      "imagePath": null,
       "sequence": 10
     },
     {
@@ -165,7 +165,7 @@
       },
       "yesChainEventId": "uluslararasi_elestiri",
       "noChainEventId": null,
-      "imagePath": "assets/events/Gezi Park Protests.jpeg",
+      "imagePath": null,
       "sequence": 17
     },
     {
@@ -189,7 +189,7 @@
       },
       "yesChainEventId": "baris_muzakereleri",
       "noChainEventId": "pkk_catisma_tirmandirma",
-      "imagePath": "assets/events/Kurdish Peace Process.jpeg",
+      "imagePath": null,
       "sequence": 12
     },
     {
@@ -213,7 +213,7 @@
       },
       "yesChainEventId": "suriyeli_multeci_krizi",
       "noChainEventId": null,
-      "imagePath": "assets/events/Syrian Civil War.jpeg",
+      "imagePath": null,
       "sequence": 14
     },
     {
@@ -237,7 +237,7 @@
       },
       "yesChainEventId": "mega_projeler",
       "noChainEventId": null,
-      "imagePath": "assets/events/Economic Growth.jpeg",
+      "imagePath": null,
       "sequence": 16
     },
     {
@@ -261,7 +261,7 @@
       },
       "yesChainEventId": "darbe_girisimi",
       "noChainEventId": "darbe_girisimi",
-      "imagePath": "assets/events/Gulen Influence.jpeg",
+      "imagePath": null,
       "sequence": 20
     },
     {
@@ -285,7 +285,7 @@
       },
       "yesChainEventId": "darbe_sonrasi_tasfiye",
       "noChainEventId": null,
-      "imagePath": "assets/events/Coup Attempt.jpeg",
+      "imagePath": null,
       "sequence": 21
     },
     {
@@ -309,7 +309,7 @@
       },
       "yesChainEventId": "ohal_durumu",
       "noChainEventId": null,
-      "imagePath": "assets/events/Post-Coup Purge.jpeg",
+      "imagePath": null,
       "sequence": 22
     },
     {
@@ -333,7 +333,7 @@
       },
       "yesChainEventId": "baskanlik_yetkileri",
       "noChainEventId": null,
-      "imagePath": "assets/events/Constitutional Referendum.jpeg",
+      "imagePath": null,
       "sequence": 25
     },
     {
@@ -357,7 +357,7 @@
       },
       "yesChainEventId": "ekonomik_iyilesme",
       "noChainEventId": "enflasyon_sarmal",
-      "imagePath": "assets/events/Currency Crisis.jpeg",
+      "imagePath": null,
       "sequence": 27
     },
     {
@@ -381,7 +381,7 @@
       },
       "yesChainEventId": "secim_yenileme",
       "noChainEventId": null,
-      "imagePath": "assets/events/Opposition Mayor.jpeg",
+      "imagePath": null,
       "sequence": 30
     },
     {
@@ -405,7 +405,7 @@
       },
       "yesChainEventId": "uluslararasi_dini_elestiri",
       "noChainEventId": null,
-      "imagePath": "assets/events/Hagia Sophia.jpeg",
+      "imagePath": null,
       "sequence": 31
     },
     {
@@ -429,7 +429,7 @@
       },
       "yesChainEventId": "uluslararasi_basin_ozgurlugu_elestirisi",
       "noChainEventId": null,
-      "imagePath": "assets/events/Media Regulation.jpeg",
+      "imagePath": null,
       "sequence": 33
     },
     {
@@ -453,7 +453,7 @@
       },
       "yesChainEventId": null,
       "noChainEventId": null,
-      "imagePath": "assets/events/Economic Orthodoxy.jpeg",
+      "imagePath": null,
       "sequence": 34
     },
     {
@@ -477,7 +477,7 @@
       },
       "yesChainEventId": "yeniden_yapilanma_cabalar",
       "noChainEventId": null,
-      "imagePath": "assets/events/Earthquake Disaster.jpeg",
+      "imagePath": null,
       "sequence": 6
     },
     {
@@ -501,7 +501,7 @@
       },
       "yesChainEventId": "guvenlik_sertlestirme",
       "noChainEventId": null,
-      "imagePath": "assets/events/Terrorist Attack.jpeg",
+      "imagePath": null,
       "sequence": 18
     },
     {
@@ -510,111 +510,301 @@
       "description": "Küresel bir pandemi Türkiye'ye ulaştı. Sıkı karantina önlemleri uygulayacak mısınız?",
       "era": "gec_donem",
       "yesImpact": {
-        "health": 20,
+        "health": 25,
         "wealth": -20,
         "political": -5,
-        "communal": -10,
-        "optionText": "Halk sağlığı en büyük önceliğimizdir"
+        "communal": -15,
+        "optionText": "Halk sağlığı önceliğimiz olmalı"
       },
       "noImpact": {
-        "health": -25,
-        "wealth": 10,
+        "health": -20,
+        "wealth": 5,
         "political": 5,
         "communal": 5,
-        "optionText": "Ekonomiyi kapatamayız"
+        "optionText": "Ekonomiyi çalışır durumda tutmalıyız"
       },
-      "yesChainEventId": null,
-      "noChainEventId": null,
-      "imagePath": "assets/events/Pandemic Response.jpeg",
+      "yesChainEventId": "ekonomik_iyilesme_plani",
+      "noChainEventId": "saglik_sistemi_bunalimi",
+      "imagePath": null,
       "sequence": 32
     },
     {
-      "id": "aile_yemegi",
-      "title": "Aile Yemeği",
-      "description": "Yoğun programınız arasında ailenizle yemek yemeye vakit ayırabilecek misiniz?",
+      "id": "laik_protestolar",
+      "title": "Laik Protestolar",
+      "description": "Laik gruplar hükümetinizin dini gündemini protesto ediyor. Protestoları bastıracak mısınız?",
       "era": "iktidara_yukselis",
-      "isNeutralEvent": true,
       "yesImpact": {
-        "health": 5,
+        "health": -5,
+        "wealth": 0,
+        "political": 10,
+        "communal": -15,
+        "optionText": "Kamu düzenini sağlamalıyız"
+      },
+      "noImpact": {
+        "health": 0,
         "wealth": 0,
         "political": -5,
-        "communal": 5,
-        "optionText": "Aile her şeyden önemlidir"
+        "communal": 10,
+        "optionText": "Barışçıl protestolara izin vereceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "sequence": 7
+    },
+    {
+      "id": "pkk_catisma_tirmandirma",
+      "title": "PKK Çatışma Tırmandırma",
+      "description": "PKK, barış görüşmelerini sürdürmeme kararınızın ardından saldırılarını artırdı. Onlara karşı büyük bir askeri operasyon başlatacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -15,
+        "wealth": -10,
+        "political": 15,
+        "communal": -20,
+        "optionText": "Teröre karşı sert bir yanıt vermeliyiz"
       },
       "noImpact": {
         "health": -5,
         "wealth": 0,
-        "political": 5,
-        "communal": -5,
-        "optionText": "Ülke meseleleri önceliklidir"
+        "political": -10,
+        "communal": 5,
+        "optionText": "Barış görüşmelerini yeniden başlatmaya çalışacağız"
       },
-      "yesChainEventId": null,
+      "yesChainEventId": "sinir_otesi_operasyon",
       "noChainEventId": null,
-      "imagePath": "assets/events/Family Dinner.jpeg",
-      "sequence": 500
+      "imagePath": null,
+      "sequence": 19
     },
     {
-      "id": "cay_sohbeti",
-      "title": "Çay Sohbeti",
-      "description": "Yerel bir çayhanede vatandaşlarla sohbet etmek için davet aldınız. Katılacak mısınız?",
-      "era": "konsolidasyon",
-      "isNeutralEvent": true,
+      "id": "ergenekon_davasi",
+      "title": "Ergenekon Davası",
+      "description": "Askeri darbe planladığı iddia edilen bir grup subay ve sivil tutuklandı. Bu davaları destekleyecek misiniz?",
+      "era": "iktidara_yukselis",
       "yesImpact": {
         "health": 0,
         "wealth": 0,
-        "political": 5,
-        "communal": 10,
-        "optionText": "Halkın nabzını tutmak önemli"
+        "political": 20,
+        "communal": -15,
+        "optionText": "Derin devlet temizlenmeli"
       },
       "noImpact": {
         "health": 0,
         "wealth": 0,
-        "political": -5,
-        "communal": -5,
-        "optionText": "Güvenlik riski çok yüksek"
+        "political": -15,
+        "communal": 5,
+        "optionText": "Yargı sürecine müdahale etmeyeceğiz"
       },
-      "yesChainEventId": null,
+      "yesChainEventId": "balyoz_davasi",
       "noChainEventId": null,
-      "imagePath": "assets/events/Tea Conversation.jpeg",
-      "sequence": 500
+      "imagePath": null,
+      "sequence": 8
     },
     {
-      "id": "cami_ziyareti",
-      "title": "Cami Ziyareti",
-      "description": "Cuma namazı için önemli bir camide görünmeniz isteniyor. Katılacak mısınız?",
+      "id": "balyoz_davasi",
+      "title": "Balyoz Davası",
+      "description": "Yeni bir darbe planı ortaya çıkarıldı. Yüzlerce subay tutuklandı. Bu davanın ilerlemesini destekleyecek misiniz?",
       "era": "konsolidasyon",
-      "isNeutralEvent": true,
       "yesImpact": {
         "health": 0,
         "wealth": 0,
-        "political": 5,
-        "communal": 10,
-        "optionText": "Dini vecibelerimi yerine getirmeliyim"
+        "political": 15,
+        "communal": -10,
+        "optionText": "Demokrasimizi korumak için bu tehdidi ortadan kaldırmalıyız"
       },
       "noImpact": {
         "health": 0,
         "wealth": 0,
-        "political": -5,
-        "communal": -5,
-        "optionText": "Özel bir toplantım var"
+        "political": -10,
+        "communal": 5,
+        "optionText": "Adil yargılama sağlanmalı"
       },
       "yesChainEventId": null,
       "noChainEventId": null,
-      "imagePath": "assets/events/Mosque Visit.jpeg",
+      "imagePath": null,
+      "sequence": 11
+    },
+    {
+      "id": "suriyeli_multeci_krizi",
+      "title": "Suriyeli Mülteci Krizi",
+      "description": "Suriye'deki savaştan kaçan milyonlarca mülteci Türkiye'ye geliyor. Sınırları açık tutacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -10,
+        "wealth": -15,
+        "political": 5,
+        "communal": -10,
+        "optionText": "Suriyeli kardeşlerimize kapılarımızı açacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Sınırlarımızı korumalı ve mülteci akışını sınırlamalıyız"
+      },
+      "yesChainEventId": "ab_multeci_anlasmasi",
+      "noChainEventId": null,
+      "imagePath": null,
+      "sequence": 15
+    },
+    {
+      "id": "ab_multeci_anlasmasi",
+      "title": "AB Mülteci Anlaşması",
+      "description": "Avrupa Birliği, Türkiye'nin mültecileri tutması karşılığında mali yardım ve vize serbestisi öneriyor. Bu anlaşmayı kabul edecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 20,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Bu anlaşma her iki taraf için de faydalı"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -15,
+        "political": -5,
+        "communal": 10,
+        "optionText": "Avrupa kendi mülteci sorununu çözmeli"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "sequence": 26
+    },
+    {
+      "id": "baris_muzakereleri",
+      "title": "Barış Müzakereleri",
+      "description": "Kürt barış süreci başladı. PKK lideri Abdullah Öcalan'ın mesajlarının halka okunmasına izin verecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 5,
+        "political": -10,
+        "communal": 20,
+        "optionText": "Barış için her türlü diyaloğa açığız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": -15,
+        "optionText": "Terörist liderler halka hitap edemez"
+      },
+      "yesChainEventId": "dolmabahce_mutabakati",
+      "noChainEventId": null,
+      "imagePath": null,
+      "sequence": 13
+    },
+    {
+      "id": "dolmabahce_mutabakati",
+      "title": "Dolmabahçe Mutabakatı",
+      "description": "Kürt siyasetçilerle bir barış anlaşması müzakere edildi. Bu anlaşmayı destekleyecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 10,
+        "wealth": 10,
+        "political": -15,
+        "communal": 25,
+        "optionText": "Barış için bu adımı atmalıyız"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": -5,
+        "political": 10,
+        "communal": -20,
+        "optionText": "Bu anlaşma çok fazla taviz veriyor"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": "baris_sureci_bozulmasi",
+      "imagePath": null,
+      "sequence": 23
+    },
+    {
+      "id": "baris_sureci_bozulmasi",
+      "title": "Barış Süreci Bozulması",
+      "description": "Barış süreci geriliyor. PKK şehirlerde silahlanıyor. Güvenlik operasyonlarını yeniden başlatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -15,
+        "wealth": -10,
+        "political": 15,
+        "communal": -20,
+        "optionText": "Terörle mücadeleye devam etmeliyiz"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": -15,
+        "communal": 10,
+        "optionText": "Barış sürecini kurtarmaya çalışacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "sequence": 24
+    },
+    {
+      "id": "aile_ici_anlasmaz",
+      "title": "Aile İçi Anlaşmazlık",
+      "description": "Ailenizden biri, hükümet politikalarınızı eleştiren bir açıklama yaptı. Bunu kamuoyu önünde ele alacak mısınız?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": -5,
+        "wealth": 0,
+        "political": -5,
+        "communal": -5,
+        "optionText": "Aile içi anlaşmazlıklar özel kalmalı"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 5,
+        "optionText": "Herkes kendi fikirlerini ifade etmekte özgürdür"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true,
+      "sequence": 500
+    },
+    {
+      "id": "saglik_kontrolu",
+      "title": "Sağlık Kontrolü",
+      "description": "Doktorunuz kapsamlı bir sağlık kontrolü öneriyor. Yoğun programınızdan zaman ayıracak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 10,
+        "wealth": 0,
+        "political": -5,
+        "communal": 0,
+        "optionText": "Sağlık her şeyden önemli"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": 5,
+        "communal": 0,
+        "optionText": "Şu anda daha acil konular var"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true,
       "sequence": 500
     },
     {
       "id": "futbol_maci",
       "title": "Futbol Maçı",
-      "description": "Önemli bir futbol maçına davet edildiniz. Stadyumda görünecek misiniz?",
-      "era": "kriz_ve_tepki",
-      "isNeutralEvent": true,
+      "description": "Önemli bir futbol maçı var. Stadyuma gidip halkla birlikte maçı izleyecek misiniz?",
+      "era": "iktidara_yukselis",
       "yesImpact": {
         "health": 5,
         "wealth": 0,
         "political": 0,
         "communal": 10,
-        "optionText": "Milli takımımızı desteklemeliyim"
+        "optionText": "Halkla birlikte olmak isterim"
       },
       "noImpact": {
         "health": 0,
@@ -625,107 +815,208 @@
       },
       "yesChainEventId": null,
       "noChainEventId": null,
-      "imagePath": "assets/events/Football Match.jpeg",
+      "imagePath": null,
+      "isNeutralEvent": true,
       "sequence": 500
     },
     {
-      "id": "kitap_okuma",
-      "title": "Kitap Okuma",
-      "description": "Yeni çıkan bir kitap hakkında görüşünüz soruluyor. Okuyacak mısınız?",
+      "id": "tatil_plani",
+      "title": "Tatil Planı",
+      "description": "Aileniz kısa bir tatil öneriyor. Birkaç günlüğüne işten uzaklaşacak mısınız?",
       "era": "gec_donem",
-      "isNeutralEvent": true,
       "yesImpact": {
-        "health": 5,
-        "wealth": 0,
-        "political": 5,
-        "communal": 0,
-        "optionText": "Entelektüel gelişim önemlidir"
-      },
-      "noImpact": {
-        "health": 0,
+        "health": 15,
         "wealth": 0,
         "political": -5,
-        "communal": 0,
-        "optionText": "Okumak için vaktim yok"
+        "communal": 5,
+        "optionText": "Dinlenmeye ihtiyacım var"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": 5,
+        "communal": -5,
+        "optionText": "Ülke benim tam dikkatimi gerektiriyor"
       },
       "yesChainEventId": null,
       "noChainEventId": null,
-      "imagePath": "assets/events/Reading a Book.jpeg",
+      "imagePath": null,
+      "isNeutralEvent": true,
       "sequence": 500
     },
     {
-      "id": "ramazan_iftari",
-      "title": "Ramazan İftarı",
-      "description": "Büyük bir iftar organizasyonuna ev sahipliği yapmanız isteniyor. Kabul edecek misiniz?",
-      "era": "kriz_ve_tepki",
-      "isNeutralEvent": true,
+      "id": "yeni_kitap",
+      "title": "Yeni Kitap",
+      "description": "Bir yazar, sizin liderliğiniz hakkında bir kitap yazdı. Kitabın tanıtımına katılacak mısınız?",
+      "era": "konsolidasyon",
       "yesImpact": {
-        "health": 0,
-        "wealth": -5,
-        "political": 5,
-        "communal": 15,
-        "optionText": "Bu kutsal ayda halkla bir araya gelmeliyim"
-      },
-      "noImpact": {
         "health": 0,
         "wealth": 0,
-        "political": -5,
-        "communal": -10,
-        "optionText": "Özel programım var"
-      },
-      "yesChainEventId": null,
-      "noChainEventId": null,
-      "imagePath": "assets/events/Ramadan Iftar.jpeg",
-      "sequence": 500
-    },
-    {
-      "id": "teknoloji_tanitimi",
-      "title": "Teknoloji Tanıtımı",
-      "description": "Yerli teknoloji şirketinin yeni ürün lansmanına katılmanız isteniyor. Gidecek misiniz?",
-      "era": "gec_donem",
-      "isNeutralEvent": true,
-      "yesImpact": {
-        "health": 0,
-        "wealth": 5,
         "political": 5,
         "communal": 5,
-        "optionText": "Yerli teknolojiye destek vermeliyiz"
+        "optionText": "Kültürel etkinlikleri desteklemeliyim"
       },
       "noImpact": {
         "health": 0,
-        "wealth": -5,
+        "wealth": 0,
         "political": -5,
         "communal": 0,
-        "optionText": "Daha önemli konulara odaklanmalıyım"
+        "optionText": "Zamanım yok"
       },
       "yesChainEventId": null,
       "noChainEventId": null,
-      "imagePath": "assets/events/Technology Presentation.jpeg",
+      "imagePath": null,
+      "isNeutralEvent": true,
       "sequence": 500
     },
     {
-      "id": "aile_tatili",
-      "title": "Aile Tatili",
-      "description": "Aileniz kısa bir tatil için size baskı yapıyor. Birkaç günlüğüne işten uzaklaşacak mısınız?",
-      "era": "gec_donem",
+      "id": "universite_ziyareti",
+      "title": "Üniversite Ziyareti",
+      "description": "Bir üniversite sizi konuşma yapmak üzere davet ediyor. Kabul edecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Gençlerle iletişim kurmak önemli"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 0,
+        "communal": -5,
+        "optionText": "Programım çok yoğun"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
       "isNeutralEvent": true,
+      "sequence": 500
+    },
+    {
+      "id": "yabanci_dil",
+      "title": "Yabancı Dil",
+      "description": "Uluslararası toplantılar için İngilizce öğrenmeniz öneriliyor. Dil derslerine başlayacak mısınız?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Uluslararası iletişim için faydalı olacak"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": 0,
+        "optionText": "Tercümanlar yeterli"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true,
+      "sequence": 500
+    },
+    {
+      "id": "basin_toplantisi",
+      "title": "Basın Toplantısı",
+      "description": "Yabancı basın mensupları sizinle röportaj yapmak istiyor. Onlarla görüşecek misiniz?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Türkiye'nin mesajını dünyaya iletmeliyim"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -5,
+        "communal": 0,
+        "optionText": "Yabancı basın genellikle taraflı"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true,
+      "sequence": 500
+    },
+    {
+      "id": "cami_acilisi",
+      "title": "Cami Açılışı",
+      "description": "Yeni inşa edilen büyük bir caminin açılışına katılmanız isteniyor. Gidecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Dini değerlerimizi desteklemeliyiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 0,
+        "communal": -5,
+        "optionText": "Başka bir yetkiliye görev vereceğim"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true,
+      "sequence": 500
+    },
+    {
+      "id": "yeni_koruma",
+      "title": "Yeni Koruma",
+      "description": "Güvenlik ekibiniz koruma protokolünüzü güçlendirmek istiyor. Daha sıkı güvenlik önlemlerini kabul edecek misiniz?",
+      "era": "kriz_ve_tepki",
       "yesImpact": {
         "health": 10,
         "wealth": 0,
-        "political": -5,
-        "communal": 0,
-        "optionText": "Dinlenmek beni daha verimli yapacak"
+        "political": 5,
+        "communal": -5,
+        "optionText": "Güvenlik öncelikli olmalı"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": 0,
+        "communal": 5,
+        "optionText": "Halkla aramda daha az bariyer olsun"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": null,
+      "isNeutralEvent": true,
+      "sequence": 500
+    },
+    {
+      "id": "aile_dugunu",
+      "title": "Aile Düğünü",
+      "description": "Ailenizden birinin düğünü var. Devlet işlerini bir günlüğüne bırakıp katılacak mısınız?",
+      "era": "gec_donem",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 0,
+        "political": 0,
+        "communal": 5,
+        "optionText": "Aile bağları önemli"
       },
       "noImpact": {
         "health": -5,
         "wealth": 0,
         "political": 5,
         "communal": -5,
-        "optionText": "Ülke meseleleri tatilden daha önemli"
+        "optionText": "Devlet işleri öncelikli"
       },
       "yesChainEventId": null,
       "noChainEventId": null,
-      "imagePath": "assets/events/Family Vacation.jpeg",
+      "imagePath": null,
+      "isNeutralEvent": true,
       "sequence": 500
     }
   ]

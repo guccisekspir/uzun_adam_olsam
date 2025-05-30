@@ -1,3 +1,5 @@
+import 'package:erdogan_leadership_game/screens/home_screen.dart';
+import 'package:erdogan_leadership_game/theme/neo_ottoman_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/event_card.dart';
@@ -26,8 +28,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
   @override
   Widget build(BuildContext context) {
     final gameValues = ref.watch(gameStateProvider);
-    final turnCount =
-        ref.watch(gameStateProvider.select((state) => state.turnCount));
+
     final currentEvent =
         ref.watch(gameStateProvider.select((state) => state.currentEvent));
     final currentEra =
@@ -53,12 +54,42 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         },
       );
     }
+    String patternAsset;
+    switch (currentEra.name) {
+      case 'iktidara_yukselis':
+        patternAsset = 'assets/images/ottoman_pattern_beige.jpeg';
+        break;
+      case 'konsolidasyon':
+        patternAsset = 'assets/images/ottoman_pattern_blue.jpeg';
+        break;
+      case 'kriz_ve_tepki':
+        patternAsset = 'assets/images/ottoman_pattern_geometric.jpeg';
+        break;
+      case 'gec_donem':
+        patternAsset = 'assets/images/ottoman_pattern_colorful.jpeg';
+        break;
+      default:
+        patternAsset = 'assets/images/ottoman_pattern_beige.jpeg';
+    }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Uzun Adam Liderlik Kararları - ${currentEra.displayName}'),
-        backgroundColor: currentEra.color,
-      ),
+          title: Text(
+            '${currentEra.displayName}',
+            style: NeoOttomanTheme.titleStyle.copyWith(
+              fontSize: 20,
+              color: NeoOttomanTheme.royalBlue,
+              shadows: [
+                Shadow(
+                  offset: const Offset(1.0, 1.0),
+                  blurRadius: 3.0,
+                  color: Colors.black.withOpacity(0.7),
+                ),
+              ],
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: NeoOttomanTheme.beige.withOpacity(0.6)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           ref.read(gameStateProvider.notifier).restartGame();
@@ -74,120 +105,114 @@ class _GameScreenState extends ConsumerState<GameScreen> {
         backgroundColor: Colors.red,
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            // Değer göstergeleri
+            OttomanPatternBackground(
+                assetPath: 'assets/images/ottoman_pattern4.jpeg'),
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width > 600
+                    ? MediaQuery.of(context).size.width * 0.35
+                    : 0,
+              ),
+              child: Column(
                 children: [
-                  AnimatedValueIndicator(
-                    label: 'Sağlık',
-                    value: gameValues.health,
-                    previousValue: _previousHealth,
-                    color: Colors.red,
-                    animate: _shouldAnimate,
+                  // Değer göstergeleri
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AnimatedValueIndicator(
+                          label: 'Sağlık',
+                          value: gameValues.health,
+                          previousValue: _previousHealth,
+                          color: Colors.red,
+                          animate: _shouldAnimate,
+                        ),
+                        AnimatedValueIndicator(
+                          label: 'Zenginlik',
+                          value: gameValues.wealth,
+                          previousValue: _previousWealth,
+                          color: Colors.amber,
+                          animate: _shouldAnimate,
+                        ),
+                        AnimatedValueIndicator(
+                          label: 'Politik',
+                          value: gameValues.political,
+                          previousValue: _previousPolitical,
+                          color: Colors.blue,
+                          animate: _shouldAnimate,
+                        ),
+                        AnimatedValueIndicator(
+                          label: 'Toplumsal',
+                          value: gameValues.communal,
+                          previousValue: _previousCommunal,
+                          color: Colors.green,
+                          animate: _shouldAnimate,
+                        ),
+                      ],
+                    ),
                   ),
-                  AnimatedValueIndicator(
-                    label: 'Zenginlik',
-                    value: gameValues.wealth,
-                    previousValue: _previousWealth,
-                    color: Colors.amber,
-                    animate: _shouldAnimate,
-                  ),
-                  AnimatedValueIndicator(
-                    label: 'Politik',
-                    value: gameValues.political,
-                    previousValue: _previousPolitical,
-                    color: Colors.blue,
-                    animate: _shouldAnimate,
-                  ),
-                  AnimatedValueIndicator(
-                    label: 'Toplumsal',
-                    value: gameValues.communal,
-                    previousValue: _previousCommunal,
-                    color: Colors.green,
-                    animate: _shouldAnimate,
+
+                  // Kart kaydırıcı
+                  Expanded(
+                    child: currentEvent != null
+                        ? CardSwiper(
+                            event: currentEvent,
+                            onSwipeLeft: () {
+                              // Store current values before decision
+                              setState(() {
+                                _previousHealth = gameValues.health;
+                                _previousWealth = gameValues.wealth;
+                                _previousPolitical = gameValues.political;
+                                _previousCommunal = gameValues.communal;
+                                _shouldAnimate = true;
+                              });
+
+                              // Make decision
+                              ref.read(gameStateProvider.notifier).decideNo();
+
+                              // Reset animation flag after a delay
+                              Future.delayed(const Duration(milliseconds: 2000),
+                                  () {
+                                if (mounted) {
+                                  setState(() {
+                                    _shouldAnimate = false;
+                                  });
+                                }
+                              });
+                            },
+                            onSwipeRight: () {
+                              // Store current values before decision
+                              setState(() {
+                                _previousHealth = gameValues.health;
+                                _previousWealth = gameValues.wealth;
+                                _previousPolitical = gameValues.political;
+                                _previousCommunal = gameValues.communal;
+                                _shouldAnimate = true;
+                              });
+
+                              // Make decision
+                              ref.read(gameStateProvider.notifier).decideYes();
+
+                              // Reset animation flag after a delay
+                              Future.delayed(const Duration(milliseconds: 2000),
+                                  () {
+                                if (mounted) {
+                                  setState(() {
+                                    _shouldAnimate = false;
+                                  });
+                                }
+                              });
+                            },
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          ),
                   ),
                 ],
               ),
-            ),
-
-            // Tur bilgisi
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Tur: $turnCount',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Text(
-                    currentEra.displayName,
-                    style: TextStyle(
-                      color: currentEra.color,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Kart kaydırıcı
-            Expanded(
-              child: currentEvent != null
-                  ? CardSwiper(
-                      event: currentEvent,
-                      onSwipeLeft: () {
-                        // Store current values before decision
-                        setState(() {
-                          _previousHealth = gameValues.health;
-                          _previousWealth = gameValues.wealth;
-                          _previousPolitical = gameValues.political;
-                          _previousCommunal = gameValues.communal;
-                          _shouldAnimate = true;
-                        });
-
-                        // Make decision
-                        ref.read(gameStateProvider.notifier).decideNo();
-
-                        // Reset animation flag after a delay
-                        Future.delayed(const Duration(milliseconds: 2000), () {
-                          if (mounted) {
-                            setState(() {
-                              _shouldAnimate = false;
-                            });
-                          }
-                        });
-                      },
-                      onSwipeRight: () {
-                        // Store current values before decision
-                        setState(() {
-                          _previousHealth = gameValues.health;
-                          _previousWealth = gameValues.wealth;
-                          _previousPolitical = gameValues.political;
-                          _previousCommunal = gameValues.communal;
-                          _shouldAnimate = true;
-                        });
-
-                        // Make decision
-                        ref.read(gameStateProvider.notifier).decideYes();
-
-                        // Reset animation flag after a delay
-                        Future.delayed(const Duration(milliseconds: 2000), () {
-                          if (mounted) {
-                            setState(() {
-                              _shouldAnimate = false;
-                            });
-                          }
-                        });
-                      },
-                    )
-                  : const Center(
-                      child: CircularProgressIndicator(),
-                    ),
             ),
           ],
         ),

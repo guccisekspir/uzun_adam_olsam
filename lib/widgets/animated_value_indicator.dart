@@ -1,3 +1,4 @@
+import 'package:erdogan_leadership_game/theme/neo_ottoman_theme.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedValueIndicator extends StatefulWidget {
@@ -27,7 +28,7 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
   late Animation<double> _progressAnimation;
   late Animation<double> _scaleAnimation;
   late Animation<double> _opacityAnimation;
-  
+
   int _displayValue = 0;
   double _progressValue = 0.0;
   bool _showChangeIndicator = false;
@@ -38,12 +39,12 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
     super.initState();
     _displayValue = widget.value;
     _progressValue = widget.value / 100;
-    
+
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
-    
+
     _scaleAnimation = TweenSequence<double>([
       TweenSequenceItem(
         tween: Tween<double>(begin: 1.0, end: 1.2),
@@ -57,7 +58,7 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
       parent: _controller,
       curve: Curves.easeInOut,
     ));
-    
+
     _opacityAnimation = TweenSequence<double>([
       TweenSequenceItem(
         tween: Tween<double>(begin: 0.0, end: 1.0),
@@ -75,14 +76,14 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
       parent: _controller,
       curve: Curves.easeInOut,
     ));
-    
+
     _controller.addListener(() {
       setState(() {
         _displayValue = _valueAnimation.value;
         _progressValue = _progressAnimation.value;
       });
     });
-    
+
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
@@ -90,14 +91,14 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
         });
       }
     });
-    
+
     _setupAnimation();
   }
-  
+
   void _setupAnimation() {
     final int startValue = widget.previousValue ?? widget.value;
     final double startProgress = startValue / 100;
-    
+
     _valueAnimation = IntTween(
       begin: startValue,
       end: widget.value,
@@ -105,7 +106,7 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
       parent: _controller,
       curve: Curves.easeInOut,
     ));
-    
+
     _progressAnimation = Tween<double>(
       begin: startProgress,
       end: widget.value / 100,
@@ -113,7 +114,7 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
       parent: _controller,
       curve: Curves.easeInOut,
     ));
-    
+
     if (widget.previousValue != null) {
       _changeAmount = widget.value - widget.previousValue!;
       _showChangeIndicator = _changeAmount != 0;
@@ -123,8 +124,9 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
   @override
   void didUpdateWidget(AnimatedValueIndicator oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
-    if (widget.animate && widget.previousValue != null && 
+
+    if (widget.animate &&
+        widget.previousValue != null &&
         widget.value != widget.previousValue) {
       _setupAnimation();
       _controller.forward(from: 0.0);
@@ -144,101 +146,125 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Text(
-          widget.label,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: widget.color,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            // Value circle with animation
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: widget.animate ? _scaleAnimation.value : 1.0,
-                  child: child,
-                );
-              },
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(
-                    color: widget.color,
-                    width: 3,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 5,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Text(
-                    _displayValue.toString(),
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: _getValueColor(_displayValue),
-                    ),
-                  ),
-                ),
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: NeoOttomanTheme.beige.withOpacity(0.7),
+              border: Border.all(
+                color: NeoOttomanTheme.gold,
+                width: 3,
               ),
             ),
-            
-            // Change indicator
-            if (_showChangeIndicator)
-              AnimatedBuilder(
-                animation: _controller,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _opacityAnimation.value,
-                    child: child,
-                  );
-                },
-                child: Positioned(
-                  top: -15,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: _changeAmount > 0 ? Colors.green : Colors.red,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      _changeAmount > 0 ? '+$_changeAmount' : '$_changeAmount',
-                      style: const TextStyle(
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text(
+                widget.label,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: NeoOttomanTheme.royalBlue,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Value circle with animation
+                  AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Transform.scale(
+                        scale: widget.animate ? _scaleAnimation.value : 1.0,
+                        child: child,
+                      );
+                    },
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                        border: Border.all(
+                          color: widget.color,
+                          width: 3,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 5,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          _displayValue.toString(),
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: NeoOttomanTheme.royalBlue,
+                          ),
+                        ),
                       ),
                     ),
                   ),
+
+                  // Change indicator
+                  if (_showChangeIndicator)
+                    AnimatedBuilder(
+                      animation: _controller,
+                      builder: (context, child) {
+                        return Opacity(
+                          opacity: _opacityAnimation.value,
+                          child: child,
+                        );
+                      },
+                      child: Positioned(
+                        top: -15,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color:
+                                _changeAmount > 0 ? Colors.green : Colors.red,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            _changeAmount > 0
+                                ? '+$_changeAmount'
+                                : '$_changeAmount',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              SizedBox(
+                width: 60,
+                height: 5,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(2.5),
+                  child: LinearProgressIndicator(
+                    value: _progressValue,
+                    backgroundColor: Colors.grey[300],
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        _getValueColor(_displayValue)),
+                  ),
                 ),
               ),
-          ],
-        ),
-        const SizedBox(height: 4),
-        SizedBox(
-          width: 60,
-          height: 5,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(2.5),
-            child: LinearProgressIndicator(
-              value: _progressValue,
-              backgroundColor: Colors.grey[300],
-              valueColor: AlwaysStoppedAnimation<Color>(_getValueColor(_displayValue)),
-            ),
+            ],
           ),
         ),
       ],

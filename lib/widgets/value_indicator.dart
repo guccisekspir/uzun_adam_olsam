@@ -43,7 +43,7 @@ class ValueIndicator extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        
+
         // Value indicator with Ottoman medallion style
         Stack(
           alignment: Alignment.center,
@@ -98,16 +98,21 @@ class ValueIndicator extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             // Value change indicator
-            if (showAnimation && previousValue != null && previousValue != value)
+            if (showAnimation &&
+                previousValue != null &&
+                previousValue != value)
               Positioned(
                 right: 0,
                 top: 5,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: value > previousValue! ? Colors.green.shade700 : Colors.red.shade700,
+                    color: value > previousValue!
+                        ? Colors.green.shade700
+                        : Colors.red.shade700,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                       color: NeoOttomanTheme.gold,
@@ -122,7 +127,9 @@ class ValueIndicator extends StatelessWidget {
                     ],
                   ),
                   child: Text(
-                    value > previousValue! ? '+${value - previousValue!}' : '${value - previousValue!}',
+                    value > previousValue!
+                        ? '+${value - previousValue!}'
+                        : '${value - previousValue!}',
                     style: const TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -133,9 +140,9 @@ class ValueIndicator extends StatelessWidget {
               ),
           ],
         ),
-        
+
         const SizedBox(height: 6),
-        
+
         // Progress bar with Ottoman-style
         Container(
           width: 70,
