@@ -56,7 +56,7 @@ class _GameScreenState extends ConsumerState<GameScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Erdoğan Liderlik Kararları - ${currentEra.displayName}'),
+        title: Text('Uzun Adam Liderlik Kararları - ${currentEra.displayName}'),
         backgroundColor: currentEra.color,
       ),
       floatingActionButton: FloatingActionButton(

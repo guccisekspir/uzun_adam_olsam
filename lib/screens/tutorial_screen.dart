@@ -17,7 +17,7 @@ class TutorialScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Erdoğan Liderlik Kararları',
+                'Uzun Adam Liderlik Kararları',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class TutorialScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Bu oyun, Recep Tayyip Erdoğan\'ın 20 yıllık liderlik döneminde karşılaştığı zorlu kararları simüle eder. Amacınız, dört temel değeri dengede tutarak ülkeyi yönetmektir.',
+                'Bu oyun, Uzun Adam\'ın 20 yıllık liderlik döneminde karşılaştığı zorlu kararları simüle eder. Amacınız, dört temel değeri dengede tutarak ülkeyi yönetmektir.',
                 style: TextStyle(fontSize: 16),
               ),
               const SizedBox(height: 24),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/event_card.dart';
+import '../theme/neo_ottoman_theme.dart';
 import 'dart:math' as math;
 
 class CardSwiper extends StatefulWidget {
@@ -134,110 +135,211 @@ class _CardSwiperState extends State<CardSwiper>
           child: Transform.rotate(
             angle: angle,
             child: Container(
-              width: screenWidth * 0.50,
-              height: screenHeight * 0.4,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 10,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-              ),
+              width: screenWidth * 0.85,
+              height: screenHeight * 0.6,
+              decoration: NeoOttomanTheme.ornateCardDecoration,
               child: Stack(
                 children: [
+                  // Ottoman pattern background with overlay
+                  Positioned.fill(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Opacity(
+                        opacity: 0.5,
+                        child: Image.asset(
+                          'assets/images/ottoman_pattern_beige.jpeg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Ornate border decoration
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: NeoOttomanTheme.gold,
+                          width: 3,
+                        ),
+                      ),
+                    ),
+                  ),
+
                   // Card content
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        // Title
+                        // Title with Ottoman-style decoration
                         Container(
                           width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 16),
+                          decoration: BoxDecoration(
+                            color: NeoOttomanTheme.deepRed,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: NeoOttomanTheme.gold,
+                              width: 2,
+                            ),
+                          ),
                           child: Text(
                             widget.event.title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headlineSmall
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            style: NeoOttomanTheme.cardTitleStyle.copyWith(
+                              color: NeoOttomanTheme.ivory,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 20),
 
                         // Image if available
                         if (widget.event.imagePath != null) ...[
                           Expanded(
                             flex: 3,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.asset(
-                                widget.event.imagePath!,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: NeoOttomanTheme.gold,
+                                  width: 1.5,
+                                ),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 6,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(
+                                  widget.event.imagePath!,
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                ),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 20),
                         ],
 
-                        // Description
+                        // Description with Ottoman-style scroll
                         Expanded(
                           flex: widget.event.imagePath != null ? 2 : 5,
-                          child: SingleChildScrollView(
-                            child: Text(
-                              widget.event.description,
-                              style: Theme.of(context).textTheme.bodyLarge,
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: NeoOttomanTheme.ivory.withOpacity(0.9),
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: NeoOttomanTheme.gold.withOpacity(0.7),
+                                width: 1,
+                              ),
+                            ),
+                            child: SingleChildScrollView(
+                              child: Text(
+                                widget.event.description,
+                                style: NeoOttomanTheme.cardTextStyle.copyWith(
+                                  height: 1.6,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        // Kaydırma talimatları
+
+                        // Swipe instructions with Ottoman-style
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.only(top: 20),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+                              // No option
                               Column(
                                 children: [
-                                  const Icon(Icons.arrow_back,
-                                      color: Colors.red),
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red.shade800,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: NeoOttomanTheme.gold,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    child: const Icon(
+                                      Icons.arrow_back,
+                                      color: NeoOttomanTheme.ivory,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
                                   Text(
                                     'HAYIR',
                                     style: TextStyle(
-                                      color: Colors.red,
+                                      color: Colors.red.shade800,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   if (widget.event != null)
-                                    Text(
-                                      widget.event.noImpact.optionText,
-                                      style:
-                                          Theme.of(context).textTheme.bodySmall,
+                                    Container(
+                                      constraints:
+                                          const BoxConstraints(maxWidth: 120),
+                                      child: Text(
+                                        widget.event.noImpact.optionText,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                 ],
                               ),
+
+                              // Yes option
                               Column(
                                 children: [
-                                  const Icon(Icons.arrow_forward,
-                                      color: Colors.green),
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.green.shade800,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: NeoOttomanTheme.gold,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    child: const Icon(
+                                      Icons.arrow_forward,
+                                      color: NeoOttomanTheme.ivory,
+                                      size: 20,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
                                   Text(
                                     'EVET',
                                     style: TextStyle(
-                                      color: Colors.green,
+                                      color: Colors.green.shade800,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   if (widget.event != null)
-                                    Text(
-                                      widget.event.yesImpact.optionText,
-                                      style:
-                                          Theme.of(context).textTheme.bodySmall,
+                                    Container(
+                                      constraints:
+                                          const BoxConstraints(maxWidth: 120),
+                                      child: Text(
+                                        widget.event.yesImpact.optionText,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall,
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                 ],
                               ),
@@ -248,33 +350,39 @@ class _CardSwiperState extends State<CardSwiper>
                     ),
                   ),
 
-                  // Decision indicators
+                  // Decision indicators with Ottoman-style seals
                   if (position != 0)
                     Positioned(
-                      top: 16,
-                      right: position > 0 ? 16 : null,
-                      left: position < 0 ? 16 : null,
+                      top: 30,
+                      right: position > 0 ? 30 : null,
+                      left: position < 0 ? 30 : null,
                       child: Transform.rotate(
-                        angle: position > 0 ? -angle : angle,
+                        angle: position > 0 ? -math.pi / 12 : math.pi / 12,
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 8,
-                          ),
+                          padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: position > 0 ? Colors.green : Colors.red,
-                            borderRadius: BorderRadius.circular(8),
+                            color: position > 0
+                                ? Colors.green.shade800.withOpacity(0.9)
+                                : Colors.red.shade800.withOpacity(0.9),
+                            shape: BoxShape.circle,
                             border: Border.all(
-                              color: Colors.white,
+                              color: NeoOttomanTheme.gold,
                               width: 2,
                             ),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black38,
+                                blurRadius: 8,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
                           child: Text(
                             position > 0 ? 'EVET' : 'HAYIR',
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: NeoOttomanTheme.ivory,
                               fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ),

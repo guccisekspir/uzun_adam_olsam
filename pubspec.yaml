@@ -28,3 +28,10 @@ flutter:
   # Add assets
   assets:
     - assets/data/
+    - assets/images/
+    
+  # Add fonts
+  fonts:
+    - family: Fondamento
+      fonts:
+        - asset: assets/fonts/Fondamento-Regular.ttf

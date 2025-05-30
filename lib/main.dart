@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'screens/home_screen.dart';
 import 'screens/game_screen.dart';
 import 'screens/tutorial_screen.dart';
+import 'theme/neo_ottoman_theme.dart';
 
 void main() {
   runApp(
@@ -18,23 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Erdoğan Liderlik Kararları',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        fontFamily: 'Roboto',
-        useMaterial3: true,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-          centerTitle: true,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-          ),
-        ),
-      ),
+      title: 'Uzun Adam Liderlik Kararları',
+      theme: NeoOttomanTheme.themeData,
       home: const HomeScreen(),
       routes: {
         '/game': (context) => const GameScreen(),
