@@ -156,14 +156,18 @@ class _CardSwiperState extends State<CardSwiper>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Title
-                        Text(
-                          widget.event.title,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineSmall
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            widget.event.title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                         const SizedBox(height: 16),
 
