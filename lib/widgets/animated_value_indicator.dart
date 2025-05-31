@@ -225,25 +225,21 @@ class _AnimatedValueIndicatorState extends State<AnimatedValueIndicator>
                           child: child,
                         );
                       },
-                      child: Positioned(
-                        top: -15,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color:
-                                _changeAmount > 0 ? Colors.green : Colors.red,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Text(
-                            _changeAmount > 0
-                                ? '+$_changeAmount'
-                                : '$_changeAmount',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: _changeAmount > 0 ? Colors.green : Colors.red,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          _changeAmount > 0
+                              ? '+$_changeAmount'
+                              : '$_changeAmount',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                           ),
                         ),
                       ),
