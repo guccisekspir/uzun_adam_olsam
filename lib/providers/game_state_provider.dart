@@ -29,19 +29,6 @@ class GameStateNotifier extends StateNotifier<GameValues> {
   }
 
   /// Mevcut olayı döndürür
-  EventCard? get currentEvent => state.currentEvent;
-
-  /// Mevcut dönemi döndürür
-  GameEra get currentEra => state.currentEra;
-
-  /// Tur sayısını döndürür
-  int get turnCount => state.turnCount;
-
-  /// Oyun durumunu döndürür
-  GameState get gameState => state.gameState;
-
-  /// Oyun sonu nedenini döndürür
-  String? get gameOverReason => state.gameOverReason;
 
   /// Evet kararı verildiğinde çağrılır
   void decideYes() {
@@ -56,8 +43,12 @@ class GameStateNotifier extends StateNotifier<GameValues> {
       communal: state.currentEvent!.yesImpact.communal,
     );
 
-    // Zincir olayı ekle
-    _eventRepository.addChainEvent(state.currentEvent!.yesChainEventId);
+    // Zincir olayı ekle - SADECE evet kararı için olan zincir olayını ekle
+    if (state.currentEvent!.yesChainEventId != null) {
+      _eventRepository.addChainEvent(state.currentEvent!.yesChainEventId);
+      debugPrint(
+          'Added YES chain event: ${state.currentEvent!.yesChainEventId}');
+    }
 
     // Durumu güncelle
     state = newValues;
@@ -80,8 +71,11 @@ class GameStateNotifier extends StateNotifier<GameValues> {
       communal: state.currentEvent!.noImpact.communal,
     );
 
-    // Zincir olayı ekle
-    _eventRepository.addChainEvent(state.currentEvent!.noChainEventId);
+    // Zincir olayı ekle - SADECE hayır kararı için olan zincir olayını ekle
+    if (state.currentEvent!.noChainEventId != null) {
+      _eventRepository.addChainEvent(state.currentEvent!.noChainEventId);
+      debugPrint('Added NO chain event: ${state.currentEvent!.noChainEventId}');
+    }
 
     // Durumu güncelle
     state = newValues;
@@ -112,10 +106,10 @@ class GameStateNotifier extends StateNotifier<GameValues> {
   /// Bir sonraki olayı yükler
   void _loadNextEvent() {
     debugPrint(
-        'Loading next event for era: ${state.currentEra}, turn: $turnCount');
+        'Loading next event for era: ${state.currentEra}, turn: ${state.turnCount}');
 
     final nextEvent =
-        _eventRepository.getNextEvent(state.currentEra, turnCount);
+        _eventRepository.getNextEvent(state.currentEra, state.turnCount);
 
     // Check if this is an era transition event
     if (nextEvent.id.startsWith('era_transition_')) {

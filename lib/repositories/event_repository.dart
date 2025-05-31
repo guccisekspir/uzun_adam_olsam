@@ -16,6 +16,14 @@ EventRepository eventRepository(EventRepositoryRef ref) {
   return EventRepository();
 }
 
+/// Event type enum for internal tracking
+enum EventType {
+  none,
+  main,
+  neutral,
+  chain,
+}
+
 /// Repository for managing event cards
 class EventRepository {
   /// All event cards in the game
@@ -61,6 +69,67 @@ class EventRepository {
   /// Constructor that initializes the event cards
   EventRepository() {
     loadEventsFromJson();
+  }
+
+  /// Loads events from JSON file
+  Future<void> loadEventsFromJson() async {
+    try {
+      final String jsonString =
+          await rootBundle.loadString('assets/data/events.json');
+      final Map<String, dynamic> jsonData = json.decode(jsonString);
+
+      final List<dynamic> eventList = jsonData['events'];
+      allEvents.clear();
+
+      for (var eventData in eventList) {
+        final event = EventCard(
+          id: eventData['id'],
+          title: eventData['title'],
+          description: eventData['description'],
+          era: _parseEra(eventData['era']),
+          yesImpact: ValueImpact(
+            health: eventData['yesImpact']['health'],
+            wealth: eventData['yesImpact']['wealth'],
+            political: eventData['yesImpact']['political'],
+            communal: eventData['yesImpact']['communal'],
+            optionText: eventData['yesImpact']['optionText'],
+          ),
+          noImpact: ValueImpact(
+            health: eventData['noImpact']['health'],
+            wealth: eventData['noImpact']['wealth'],
+            political: eventData['noImpact']['political'],
+            communal: eventData['noImpact']['communal'],
+            optionText: eventData['noImpact']['optionText'],
+          ),
+          yesChainEventId: eventData['yesChainEventId'],
+          noChainEventId: eventData['noChainEventId'],
+          imagePath: eventData['imagePath'],
+          isNeutral: eventData['isNeutralEvent'] ?? false,
+          sequence: eventData['sequence'] ?? 999,
+        );
+        allEvents.add(event);
+      }
+      debugPrint('Loaded ${allEvents.length} events');
+    } catch (e) {
+      debugPrint('Error loading events: $e');
+      rethrow;
+    }
+  }
+
+  /// Parses era string to GameEra enum
+  GameEra _parseEra(String eraString) {
+    switch (eraString) {
+      case 'iktidara_yukselis':
+        return GameEra.iktidara_yukselis;
+      case 'konsolidasyon':
+        return GameEra.konsolidasyon;
+      case 'kriz_ve_tepki':
+        return GameEra.kriz_ve_tepki;
+      case 'gec_donem':
+        return GameEra.gec_donem;
+      default:
+        return GameEra.iktidara_yukselis;
+    }
   }
 
   /// Gets the next event card based on the current game state
@@ -400,14 +469,49 @@ class EventRepository {
     );
   }
 
-  /// Adds a chain event to be triggered next
+  /// Creates a fallback event when no suitable events are found
+  EventCard _createFallbackEvent() {
+    return EventCard(
+      id: 'fallback_event',
+      title: 'Günlük İşler',
+      description: 'Rutin devlet işleriyle ilgileniyorsunuz.',
+      era: GameEra.iktidara_yukselis,
+      yesImpact: ValueImpact(
+        health: 0,
+        wealth: 0,
+        political: 0,
+        communal: 0,
+        optionText: 'Devam et',
+      ),
+      noImpact: ValueImpact(
+        health: 0,
+        wealth: 0,
+        political: 0,
+        communal: 0,
+        optionText: 'Bekle',
+      ),
+      sequence: 999,
+    );
+  }
+
+  /// Adds a chain event to be triggered based on player decision
+  /// This is the key method that has been updated to handle conditional chaining
   void addChainEvent(String? eventId) {
+    // If no event ID is provided, do nothing
     if (eventId == null) return;
 
+    // Find the event by ID
     final event = allEvents.firstWhere(
       (e) => e.id == eventId,
-      orElse: () => _getRandomEventWithWeighting(),
+      orElse: () => _createFallbackEvent(),
     );
+
+    // If the event is the fallback event, it means we couldn't find the chain event
+    // This could happen if the event ID is invalid or the event doesn't exist
+    if (event.id == 'fallback_event') {
+      debugPrint('Warning: Chain event with ID $eventId not found');
+      return;
+    }
 
     // Assign sequence number to the chain event
     final chainEvent = _assignSequenceNumber(event);
@@ -497,210 +601,19 @@ class EventRepository {
         event.noImpact.political.abs() +
         event.noImpact.communal.abs();
 
-    return yesImpact + noImpact;
+    return (yesImpact + noImpact) ~/ 2; // Average of yes and no impacts
   }
 
-  /// Creates a fallback event in case no events are available
-  EventCard _createFallbackEvent() {
-    return EventCard(
-      id: 'fallback_event',
-      title: 'Beklenmedik Durum',
-      description:
-          'Beklenmedik bir durumla karşı karşıyasınız. Nasıl yanıt vereceksiniz?',
-      era: GameEra.iktidara_yukselis,
-      yesImpact: ValueImpact(
-        health: 5,
-        wealth: 5,
-        political: 5,
-        communal: 5,
-        optionText: 'Olumlu yaklaşım göster',
-      ),
-      noImpact: ValueImpact(
-        health: -5,
-        wealth: -5,
-        political: -5,
-        communal: -5,
-        optionText: 'Olumsuz yaklaşım göster',
-      ),
-      sequence: 9999, // Very high sequence number
-    );
-  }
-
-  /// Loads events from the JSON file
-  Future<void> loadEventsFromJson() async {
-    try {
-      // Load the JSON file from assets
-      final jsonString = await rootBundle.loadString('assets/data/events.json');
-
-      // Parse the JSON
-      final jsonData = json.decode(jsonString);
-
-      // Clear existing events
-      allEvents.clear();
-
-      // Convert JSON to EventCard objects
-      for (var eventData in jsonData['events']) {
-        final event = _convertJsonToEventCard(eventData);
-        allEvents.add(event);
-      }
-
-      debugPrint('Loaded ${allEvents.length} events from JSON');
-    } catch (e) {
-      debugPrint('Error loading events from JSON: $e');
-      // Fallback to hardcoded events if JSON loading fails
-      _initializeHardcodedEvents();
-    }
-  }
-
-  /// Converts a JSON object to an EventCard
-  EventCard _convertJsonToEventCard(Map<String, dynamic> json) {
-    // Convert era string to GameEra enum
-    GameEra era;
-    switch (json['era']) {
-      case 'iktidara_yukselis':
-        era = GameEra.iktidara_yukselis;
-        break;
-      case 'konsolidasyon':
-        era = GameEra.konsolidasyon;
-        break;
-      case 'kriz_ve_tepki':
-        era = GameEra.kriz_ve_tepki;
-        break;
-      case 'gec_donem':
-        era = GameEra.gec_donem;
-        break;
-      default:
-        era = GameEra.iktidara_yukselis;
-    }
-
-    // Create YES impact
-    final yesImpact = ValueImpact(
-      health: json['yesImpact']['health'],
-      wealth: json['yesImpact']['wealth'],
-      political: json['yesImpact']['political'],
-      communal: json['yesImpact']['communal'],
-      optionText: json['yesImpact']['optionText'],
-      isDelayed: json['yesImpact']['isDelayed'] ?? false,
-      delayTurns: json['yesImpact']['delayTurns'] ?? 0,
-    );
-
-    // Create NO impact
-    final noImpact = ValueImpact(
-      health: json['noImpact']['health'],
-      wealth: json['noImpact']['wealth'],
-      political: json['noImpact']['political'],
-      communal: json['noImpact']['communal'],
-      optionText: json['noImpact']['optionText'],
-      isDelayed: json['noImpact']['isDelayed'] ?? false,
-      delayTurns: json['noImpact']['delayTurns'] ?? 0,
-    );
-
-    // Check if this is a neutral event
-    final isNeutral = json['isNeutralEvent'] ?? false;
-
-    // Get sequence number from predefined map or use default
-    final sequence = json['sequence'] ?? (isNeutral ? 500 : 999);
-
-    // Create and return the EventCard
-    return EventCard(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      era: era,
-      yesImpact: yesImpact,
-      noImpact: noImpact,
-      yesChainEventId: json['yesChainEventId'],
-      noChainEventId: json['noChainEventId'],
-      imagePath: json['imagePath'],
-      isNeutral: isNeutral,
-      sequence: sequence,
-    );
-  }
-
-  /// Initializes hardcoded events as a fallback
-  void _initializeHardcodedEvents() {
-    debugPrint('Using hardcoded events as fallback');
-
-    // Era 1: Rise to Power (2003-2008)
-    allEvents.add(
-      EventCard(
-        id: 'parti_liderligi',
-        title: 'Parti Liderliği',
-        description:
-            'Adalet ve Kalkınma Partisi (AKP) yaklaşan seçimlere katılmak için güçlü bir lidere ihtiyaç duyuyor. Partiyi yönetmek için öne çıkacak mısınız?',
-        era: GameEra.iktidara_yukselis,
-        yesImpact: ValueImpact(
-          health: -5,
-          wealth: 0,
-          political: 15,
-          communal: 10,
-          optionText: 'AKP\'yi zafere taşıyacağım',
-        ),
-        noImpact: ValueImpact(
-          health: 0,
-          wealth: 0,
-          political: -10,
-          communal: 5,
-          optionText: 'Perde arkasından destek vereceğim',
-        ),
-        yesChainEventId: 'secim_zaferi',
-        sequence: 1,
-      ),
-    );
-
-    // Add more hardcoded events as needed...
-    // This is just a fallback in case JSON loading fails
-  }
-
-  /// Reset the shown events tracking (useful for testing or starting a new game)
+  /// Resets the shown events tracking
   void resetShownEvents() {
     for (var era in GameEra.values) {
-      _shownEvents[era]!.clear();
+      _shownEvents[era]?.clear();
       _eraTransitionShown[era] = false;
     }
+    _chainEvents.clear();
+    _chainEventWaitingQueue.clear();
     _lastEventType = EventType.none;
     _consecutiveNeutralCount = 0;
     _needNeutralBeforeChain = false;
-    _chainEvents.clear();
-    _chainEventWaitingQueue.clear();
   }
-
-  /// Get the count of remaining events for an era
-  int getRemainingEventCount(GameEra era) {
-    final eraEvents = allEvents.where((event) => event.era == era).toList();
-    final shownCount = _shownEvents[era]!.length;
-    return eraEvents.length - shownCount;
-  }
-
-  /// Get the count of remaining neutral events for an era
-  int getRemainingNeutralEventCount(GameEra era) {
-    final neutralEvents = allEvents
-        .where((event) => event.era == era && event.isNeutral)
-        .toList();
-    final shownNeutralIds = _shownEvents[era]!
-        .where(
-            (id) => allEvents.any((event) => event.id == id && event.isNeutral))
-        .toList();
-    return neutralEvents.length - shownNeutralIds.length;
-  }
-
-  /// Get the count of remaining main events for an era
-  int getRemainingMainEventCount(GameEra era) {
-    final mainEvents = allEvents
-        .where((event) => event.era == era && !event.isNeutral)
-        .toList();
-    final shownMainIds = _shownEvents[era]!
-        .where((id) =>
-            allEvents.any((event) => event.id == id && !event.isNeutral))
-        .toList();
-    return mainEvents.length - shownMainIds.length;
-  }
-}
-
-/// Enum to track event types for sequencing
-enum EventType {
-  main,
-  neutral,
-  chain,
-  none,
 }

@@ -233,13 +233,17 @@ class _CardSwiperState extends State<CardSwiper>
                                     width: 1,
                                   ),
                                 ),
-                                child: SingleChildScrollView(
-                                  child: Text(
-                                    widget.event.description,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        NeoOttomanTheme.cardTextStyle.copyWith(
-                                      height: 1.6,
+                                child: Center(
+                                  child: SingleChildScrollView(
+                                    child: Center(
+                                      child: Text(
+                                        widget.event.description,
+                                        textAlign: TextAlign.center,
+                                        style: NeoOttomanTheme.cardTextStyle
+                                            .copyWith(
+                                          height: 1.6,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

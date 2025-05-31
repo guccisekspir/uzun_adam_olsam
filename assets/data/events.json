@@ -265,6 +265,631 @@
       "sequence": 20
     },
     {
+      "id": "baris_pinari_harekati",
+      "title": "Barış Pınarı Harekatı",
+      "description": "Suriye'nin kuzeyindeki YPG/PKK unsurlarına karşı sınır ötesi askeri operasyon başlatma planları hazır. Bu operasyonu onaylayacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -10,
+        "wealth": -15,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Sınır güvenliğimiz için operasyon başlatılmalı"
+      },
+      "noImpact": {
+        "health": 5,
+        "wealth": 10,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Diplomatik çözüm arayışına devam edelim"
+      },
+      "yesChainEventId": "uluslararasi_yaptirimlar",
+      "noChainEventId": "sinir_guvenligi_tehdidi",
+      "imagePath": "assets/events/Peace Spring Operation.jpeg",
+      "sequence": 23,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "papaz_brunson_krizi",
+      "title": "Papaz Brunson Krizi",
+      "description": "Amerikalı Papaz Andrew Brunson darbe girişimiyle bağlantılı olarak tutuklandı. ABD, serbest bırakılması için baskı yapıyor ve yaptırımlarla tehdit ediyor. Papazı serbest bırakacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -10,
+        "communal": -5,
+        "optionText": "ABD ile ilişkilerimizi korumak için serbest bırakalım"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -20,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Yargı bağımsızlığına müdahale etmeyeceğiz"
+      },
+      "yesChainEventId": "abd_iliskileri_iyilesme",
+      "noChainEventId": "abd_yaptirimlari",
+      "imagePath": "assets/events/Pastor Brunson Crisis.jpeg",
+      "sequence": 24,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "s400_fuze_sistemi",
+      "title": "S-400 Füze Sistemi",
+      "description": "Rusya'dan S-400 hava savunma sistemleri satın alma fırsatınız var. NATO müttefikleriniz, özellikle ABD, buna karşı çıkıyor. Satın almayı onaylayacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -15,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Ulusal güvenliğimiz için S-400'leri alacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": -15,
+        "communal": -10,
+        "optionText": "NATO müttefiklerimizle ilişkilerimizi koruyacağız"
+      },
+      "yesChainEventId": "f35_programindan_cikarilma",
+      "noChainEventId": null,
+      "imagePath": "assets/events/S-400 Missile System.jpeg",
+      "sequence": 26,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "merkez_bankasi_baskani_degisimi",
+      "title": "Merkez Bankası Başkanı Değişimi",
+      "description": "Merkez Bankası Başkanı faiz politikalarınızla uyuşmazlık yaşıyor. Başkanı görevden alacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -20,
+        "political": 15,
+        "communal": -5,
+        "optionText": "Ekonomi politikalarımızla uyumlu bir başkan atayacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Merkez Bankası'nın bağımsızlığına saygı göstereceğiz"
+      },
+      "yesChainEventId": "yatirimci_guven_kaybi",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Central Bank Governor Change.jpeg",
+      "sequence": 28,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "dogu_akdeniz_gerginligi",
+      "title": "Doğu Akdeniz Gerginliği",
+      "description": "Doğu Akdeniz'de doğal gaz arama çalışmaları Yunanistan ve Güney Kıbrıs ile gerginliğe yol açıyor. Sismik araştırma gemilerinizi bölgeye gönderecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Mavi Vatan'daki haklarımızı savunacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Diplomatik çözüm için müzakerelere odaklanacağız"
+      },
+      "yesChainEventId": "ab_yaptirimlari",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Eastern Mediterranean Tension.jpeg",
+      "sequence": 29,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "ohal_uzatma_karari",
+      "title": "OHAL Uzatma Kararı",
+      "description": "Darbe girişimi sonrası ilan edilen OHAL'in süresi doluyor. OHAL'i uzatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -5,
+        "wealth": -5,
+        "political": 20,
+        "communal": -15,
+        "optionText": "Güvenlik tehditleri devam ediyor, OHAL uzatılmalı"
+      },
+      "noImpact": {
+        "health": 5,
+        "wealth": 10,
+        "political": -10,
+        "communal": 15,
+        "optionText": "Normal demokratik düzene dönme zamanı geldi"
+      },
+      "yesChainEventId": "uluslararasi_insan_haklari_elestirisi",
+      "noChainEventId": null,
+      "imagePath": "assets/events/State of Emergency Extension.jpeg",
+      "sequence": 23,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "suriyeli_multeci_politikasi",
+      "title": "Suriyeli Mülteci Politikası",
+      "description": "Türkiye'de 3.5 milyondan fazla Suriyeli mülteci var ve toplumsal tepkiler artıyor. Mültecilerin Avrupa'ya geçişine izin verecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -5,
+        "wealth": 10,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Avrupa sınırlarını açacağız"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": -15,
+        "political": -10,
+        "communal": -5,
+        "optionText": "AB anlaşmasına bağlı kalacağız"
+      },
+      "yesChainEventId": "ab_multeci_anlasmasi_krizi",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Syrian Refugee Policy.jpeg",
+      "sequence": 26,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "idlib_operasyonu",
+      "title": "İdlib Operasyonu",
+      "description": "Suriye'nin İdlib kentinde Esad rejimi ilerliyor ve Türk gözlem noktaları tehdit altında. Askeri müdahalede bulunacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -15,
+        "wealth": -10,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Askerlerimizi ve sivilleri korumak için operasyon başlatacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Rusya ile diplomatik çözüm arayacağız"
+      },
+      "yesChainEventId": "rusya_ile_gerginlik",
+      "noChainEventId": "gozlem_noktalari_kaybi",
+      "imagePath": "assets/events/Idlib Operation.jpeg",
+      "sequence": 27,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "kanal_istanbul_projesi",
+      "title": "Kanal İstanbul Projesi",
+      "description": "İstanbul Boğazı'na alternatif olarak yapay bir su yolu projesi olan Kanal İstanbul'u başlatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -10,
+        "wealth": -20,
+        "political": 15,
+        "communal": -15,
+        "optionText": "Bu proje Türkiye'nin prestij projesi olacak"
+      },
+      "noImpact": {
+        "health": 5,
+        "wealth": 10,
+        "political": -10,
+        "communal": 15,
+        "optionText": "Çevresel ve ekonomik kaygılar nedeniyle erteleyeceğiz"
+      },
+      "yesChainEventId": "cevre_protestolari",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Canal Istanbul Project.jpeg",
+      "sequence": 28,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "zeytin_dali_harekati",
+      "title": "Zeytin Dalı Harekatı",
+      "description": "Suriye'nin Afrin bölgesindeki YPG/PKK unsurlarına karşı askeri operasyon başlatma planları hazır. Operasyonu onaylayacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -10,
+        "wealth": -10,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Terör koridoruna izin vermeyeceğiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Uluslararası tepkilerden kaçınmalıyız"
+      },
+      "yesChainEventId": "abd_turkiye_gerginligi",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Olive Branch Operation.jpeg",
+      "sequence": 24,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "rusya_ile_yakinlasma",
+      "title": "Rusya ile Yakınlaşma",
+      "description": "Batı ile ilişkiler gerginleşirken, Rusya ile daha yakın ilişkiler kurma fırsatı doğuyor. Rusya ile stratejik ortaklığı derinleştirecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": 15,
+        "communal": 5,
+        "optionText": "Çok kutuplu bir dünyada farklı ortaklıklar kurmalıyız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": -10,
+        "communal": 0,
+        "optionText": "NATO müttefiklerimizle ilişkilerimize odaklanmalıyız"
+      },
+      "yesChainEventId": "nato_uyeliginde_gerginlik",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Russia Rapprochement.jpeg",
+      "sequence": 25,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "uluslararasi_yaptirimlar",
+      "title": "Uluslararası Yaptırımlar",
+      "description": "Barış Pınarı Harekatı nedeniyle AB ve ABD'den yaptırım tehditleri geliyor. Operasyona devam edecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -5,
+        "wealth": -20,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Ulusal güvenliğimizden taviz vermeyeceğiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Ateşkes ilan edip diplomatik çözüm arayacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/International Sanctions.jpeg",
+      "sequence": 24,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "f35_programindan_cikarilma",
+      "title": "F-35 Programından Çıkarılma",
+      "description": "S-400 alımı nedeniyle ABD, Türkiye'yi F-35 programından çıkardı. Alternatif savaş uçağı projesine başlayacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -20,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Milli savaş uçağı projemizi hızlandıracağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": -15,
+        "communal": -5,
+        "optionText": "ABD ile uzlaşma arayacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/F-35 Program Removal.jpeg",
+      "sequence": 27,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "yatirimci_guven_kaybi",
+      "title": "Yatırımcı Güven Kaybı",
+      "description": "Merkez Bankası Başkanı'nın değiştirilmesi uluslararası yatırımcıların güvenini sarstı. Piyasaları sakinleştirmek için adım atacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -10,
+        "communal": 0,
+        "optionText": "Ekonomik reform paketi açıklayacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -20,
+        "political": 10,
+        "communal": -5,
+        "optionText": "Kendi ekonomi politikalarımızda ısrar edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/Investor Confidence Loss.jpeg",
+      "sequence": 29,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "ab_yaptirimlari",
+      "title": "AB Yaptırımları",
+      "description": "Doğu Akdeniz'deki faaliyetleriniz nedeniyle AB yaptırım kararı aldı. Tutumunuzu değiştirecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": -15,
+        "communal": -10,
+        "optionText": "AB ile ilişkilerimizi korumak için geri adım atacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -20,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Egemenlik haklarımızdan taviz vermeyeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/EU Sanctions.jpeg",
+      "sequence": 30,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "uluslararasi_insan_haklari_elestirisi",
+      "title": "Uluslararası İnsan Hakları Eleştirisi",
+      "description": "OHAL uygulamaları nedeniyle uluslararası insan hakları örgütleri Türkiye'yi eleştiriyor. Bu eleştirilere nasıl yanıt vereceksiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 10,
+        "political": -10,
+        "communal": 5,
+        "optionText": "Bazı OHAL uygulamalarını yumuşatacağız"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": -5,
+        "political": 15,
+        "communal": -10,
+        "optionText": "İç işlerimize karışılmasına izin vermeyeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/Human Rights Criticism.jpeg",
+      "sequence": 24,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "ab_multeci_anlasmasi_krizi",
+      "title": "AB Mülteci Anlaşması Krizi",
+      "description": "Mültecilerin Avrupa'ya geçişine izin vermeniz AB ile krize yol açtı. AB, mali yardımı artırma teklifinde bulunuyor. Teklifi kabul edecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 20,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Yeni anlaşma şartlarını kabul edeceğiz"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": -15,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Sınırları açık tutmaya devam edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/EU Refugee Deal Crisis.jpeg",
+      "sequence": 27,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "rusya_ile_gerginlik",
+      "title": "Rusya ile Gerginlik",
+      "description": "İdlib operasyonu Rusya ile ilişkileri gerdi. Rus destekli Suriye güçleri Türk askerlerine saldırdı. Nasıl karşılık vereceksiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -15,
+        "wealth": -10,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Tüm gücümüzle karşılık vereceğiz"
+      },
+      "noImpact": {
+        "health": -5,
+        "wealth": 5,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Putin ile acil görüşme talep edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/Russia Tension.jpeg",
+      "sequence": 28,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "cevre_protestolari",
+      "title": "Çevre Protestoları",
+      "description": "Kanal İstanbul projesi çevrecilerin ve İstanbul Büyükşehir Belediyesi'nin protestolarına yol açtı. Projeyi hızlandıracak mısınız yoksa diyalog mu kuracaksınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": -5,
+        "wealth": -10,
+        "political": 15,
+        "communal": -15,
+        "optionText": "Proje ulusal öneme sahip, hızla ilerleyeceğiz"
+      },
+      "noImpact": {
+        "health": 5,
+        "wealth": 5,
+        "political": -10,
+        "communal": 15,
+        "optionText": "Paydaşlarla diyalog kurup endişeleri dinleyeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/Environmental Protests.jpeg",
+      "sequence": 29,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "abd_turkiye_gerginligi",
+      "title": "ABD-Türkiye Gerginliği",
+      "description": "Afrin operasyonu ABD ile ilişkileri gerdi. ABD, YPG/PKK'ya desteğini sürdürüyor. ABD'ye karşı sert bir tutum mu alacaksınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -15,
+        "political": 15,
+        "communal": 10,
+        "optionText": "ABD'nin terör örgütlerine desteğini kınayacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Stratejik ortaklığımızı korumaya çalışacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/US Turkey Tension.jpeg",
+      "sequence": 25,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "nato_uyeliginde_gerginlik",
+      "title": "NATO Üyeliğinde Gerginlik",
+      "description": "Rusya ile yakınlaşmanız NATO müttefiklerinizle gerginliğe yol açtı. NATO tatbikatlarına katılım konusunda nasıl bir tutum alacaksınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": -15,
+        "communal": -5,
+        "optionText": "NATO taahhütlerimize bağlı kalacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Bazı tatbikatlara katılmayı reddederek tepkimizi göstereceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/NATO Membership Tension.jpeg",
+      "sequence": 26,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "sinir_guvenligi_tehdidi",
+      "title": "Sınır Güvenliği Tehdidi",
+      "description": "Suriye sınırında terör tehdidi artıyor. Askeri operasyon yapmama kararınız eleştiriliyor. Sınır güvenliği için alternatif bir plan sunacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Sınır duvarı inşaatını hızlandıracağız"
+      },
+      "noImpact": {
+        "health": -10,
+        "wealth": 0,
+        "political": -15,
+        "communal": -10,
+        "optionText": "Mevcut güvenlik önlemleri yeterli"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/Border Security Threat.jpeg",
+      "sequence": 24,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "gozlem_noktalari_kaybi",
+      "title": "Gözlem Noktaları Kaybı",
+      "description": "İdlib'de müdahale etmeme kararınız sonrası Türk gözlem noktaları Suriye rejim güçleri tarafından kuşatıldı. Askerlerimizi geri çekecek misiniz?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 5,
+        "wealth": 5,
+        "political": -20,
+        "communal": -15,
+        "optionText": "Askerlerimizin güvenliği için geri çekeceğiz"
+      },
+      "noImpact": {
+        "health": -15,
+        "wealth": -10,
+        "political": 10,
+        "communal": 5,
+        "optionText": "Gözlem noktalarını korumak için direnmeye devam edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/Observation Posts Loss.jpeg",
+      "sequence": 28,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "abd_iliskileri_iyilesme",
+      "title": "ABD İlişkileri İyileşme",
+      "description": "Rahip Brunson'ı serbest bırakmanız ABD ile ilişkilerde yumuşamaya yol açtı. ABD ile yeni bir stratejik diyalog başlatacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 15,
+        "political": 10,
+        "communal": -5,
+        "optionText": "ABD ile ilişkilerimizi güçlendireceğiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": 5,
+        "communal": 10,
+        "optionText": "Temkinli yaklaşmaya devam edeceğiz"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/US Relations Improvement.jpeg",
+      "sequence": 25,
+      "isNeutralEvent": false
+    },
+    {
+      "id": "abd_yaptirimlari",
+      "title": "ABD Yaptırımları",
+      "description": "ABD, Rahip Brunson'ın tutukluluğu nedeniyle Türkiye'ye ekonomik yaptırımlar uyguluyor. Türk Lirası değer kaybediyor. Karşı yaptırımlar uygulayacak mısınız?",
+      "era": "kriz_ve_tepki",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -15,
+        "political": 15,
+        "communal": 10,
+        "optionText": "Biz de ABD ürünlerine boykot uygulayacağız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": -10,
+        "communal": -5,
+        "optionText": "Diplomatik kanallardan çözüm arayacağız"
+      },
+      "yesChainEventId": null,
+      "noChainEventId": null,
+      "imagePath": "assets/events/US Sanctions.jpeg",
+      "sequence": 25,
+      "isNeutralEvent": false
+    },
+    {
       "id": "darbe_girisimi",
       "title": "Darbe Girişimi",
       "description": "Askeri bir darbe girişimi başladı! Ordu birlikleri sokaklarda ve savaş uçakları Ankara üzerinde uçuyor. Vatandaşları direnmeye ve sokaklara çıkmaya çağıracak mısınız?",
