@@ -121,6 +121,54 @@
       "sequence": 5
     },
     {
+      "id": "kibris_annan_plani",
+      "title": "Kıbrıs Annan Planı",
+      "description": "BM, Kıbrıs'ın yeniden birleşmesi için Annan Planı'nı sundu. Türk tarafı planı destekliyor. Siz de destekleyecek misiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 10,
+        "political": 15,
+        "communal": -5,
+        "optionText": "AB üyelik sürecimiz için bu planı desteklemeliyiz"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": -5,
+        "political": -10,
+        "communal": 10,
+        "optionText": "Kıbrıs Türklerinin haklarını korumak önceliğimiz"
+      },
+      "yesChainEventId": "ab_muzakere_sureci",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Cyprus Annan Plan.jpeg",
+      "sequence": 6
+    },
+    {
+      "id": "imf_borc_odemesi",
+      "title": "IMF Borç Ödemesi",
+      "description": "Ekonomik iyileşme sayesinde IMF borcunu erken ödeme fırsatınız var. Borcu hızlandırılmış şekilde ödeyecek misiniz?",
+      "era": "iktidara_yukselis",
+      "yesImpact": {
+        "health": 0,
+        "wealth": -10,
+        "political": 20,
+        "communal": 15,
+        "optionText": "Ekonomik bağımsızlığımızı kazanmalıyız"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 5,
+        "political": -5,
+        "communal": -5,
+        "optionText": "Şu an için IMF programına bağlı kalmalıyız"
+      },
+      "yesChainEventId": "ekonomik_bagimsizlik",
+      "noChainEventId": null,
+      "imagePath": "assets/events/IMF Debt Payment.jpeg",
+      "sequence": 7
+    },
+    {
       "id": "gulen_ittifaki",
       "title": "Gülen İttifakı",
       "description": "Gülen hareketi hükümetinize destek sunuyor. Ağları eğitim, medya ve yargıyı kapsıyor. Onlarla bir ittifak kuracak mısınız?",
@@ -143,6 +191,30 @@
       "noChainEventId": null,
       "imagePath": "assets/events/Gulen Alliance.jpeg",
       "sequence": 10
+    },
+    {
+      "id": "cumhurbaskanligi_krizi",
+      "title": "Cumhurbaşkanlığı Krizi",
+      "description": "Abdullah Gül'ün cumhurbaşkanlığı adaylığı ordu ve muhalefet tarafından engelleniyor. Gül'ün adaylığında ısrar edecek misiniz?",
+      "era": "konsolidasyon",
+      "yesImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": 15,
+        "communal": -10,
+        "optionText": "Halkın iradesine saygı duyulmalı"
+      },
+      "noImpact": {
+        "health": 0,
+        "wealth": 0,
+        "political": -15,
+        "communal": 5,
+        "optionText": "Uzlaşma adayı belirleyelim"
+      },
+      "yesChainEventId": "erken_secim_2007",
+      "noChainEventId": null,
+      "imagePath": "assets/events/Presidential Crisis.jpeg",
+      "sequence": 11
     },
     {
       "id": "gezi_parki_protestolari",
