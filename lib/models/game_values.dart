@@ -102,25 +102,3 @@ class GameValues {
     );
   }
 }
-
-/// Değer etkisi sınıfı
-class ValueImpact {
-  final int health;
-  final int wealth;
-  final int political;
-  final int communal;
-  final String optionText;
-  final bool isDelayed;
-  final int delayTurns;
-
-  /// Constructor
-  const ValueImpact({
-    required this.health,
-    required this.wealth,
-    required this.political,
-    required this.communal,
-    required this.optionText,
-    this.isDelayed = false,
-    this.delayTurns = 0,
-  });
-}
